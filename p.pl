@@ -91,7 +91,6 @@ sub rename_dirs {
         elsif ( -f $name ) {
             if (( my $base_name = $name) =~ s/\.config$// ) {
                 if ( $name_map->{$base_name} ) {
-                    p $base_name;
                     my $new_name = $name_map->{$base_name} . '.config';
                     rename_file_or_dir( $name, $new_name );
                     change_file( $new_name, $name_map, $regex );
