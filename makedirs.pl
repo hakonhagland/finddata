@@ -7,6 +7,9 @@ use warnings;
 if ( -d "newdir" ) {
     system "rm -rf newdir";
 }
+if ( ! -d "dir" ) {
+    system "mkdir dir";
+}
 chdir "dir" or die "chdir: $!";
 if ( -d "p1" ) {
     system "rm -rf p1";
