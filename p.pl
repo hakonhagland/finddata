@@ -114,6 +114,7 @@ sub rename_dirs {
 
 sub change_file {
     my ( $fn, $map, $regex ) = @_;
+    print "enter\n";
     open ( my $fh, '<', $fn ) or die "Could not open file '$fn': $!";
     my $str = do { local $/; <$fh> };
     close $fh;
@@ -124,6 +125,7 @@ sub change_file {
 }
 
 sub write_new_file {
+    print "enter1\n";
     my ( $fn, $str ) = @_;
     open ( my $fh, '>', $fn ) or die "Could not open file '$fn': $!";
     print $fh $$str;

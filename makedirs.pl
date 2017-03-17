@@ -4,8 +4,6 @@ use feature qw(say);
 use strict;
 use warnings;
 
-use Data::Printer;
-
 if ( -d "newdir" ) {
     system "rm -rf newdir";
 }
