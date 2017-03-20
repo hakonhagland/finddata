@@ -1,0 +1,42 @@
+No dft_drc violations preventing scan:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+All flops should be on scan chain; compare this with flop count reported by  DC:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+All test models shouls be used and accepted by DFTC:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Coverage > 98% (SA) and > 80% (TD):RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+All patterns passing (zero delay as well as with sdf) for both SS and FF:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Are there any Design Nodes that are being driven using FORCE statements:RadioButton:Compulsory:No:Yes,No:To Be Done:To Be Done:INCORRECT
+CDN/SDN check - This is to ensure that both CDN and SDN don't get the same value during scan. This may potentially cause TetraMax issues. So run the script to check whether set-reset flops have their CDN and SDN tied to the opposite values in Scanmode:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Has an assertion been added in Scan Sims to check for Set and Clr to be mutually exclusive:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Have assertions been added to check for PSU outputs during scan simulations?:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Scan clock gating in occ - This has to be done to ensure that the CP pins of the clock chain registers are clock gated using the SE. We are not explicitly instantiating clock gates. So we have to manually check that these are clock gated by the tool, so that any functional waveform coming on ADDR[1] does not toggle the CP pins of clock chain registers:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Print (or give path) the SA and TD Fault Summary (both Collapsed and Un-collapsed):TEXTAREA:Compulsory:USER_REPLY::To Be Done:To Be Done:INCORRECT
+Are ND and AU faults that are not covered been reviewed and justified. Give path for the justification file:TEXTAREA:Compulsory:USER_REPLY::To Be Done:To Be Done:INCORRECT
+Remove power pins while running tetramax(this is because power pins cannot be used for pattern generation):RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Are we mixing the clock edges in the scan chain. Give details of options used during scan stitching.:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Check the fanout of two scan enables. One should go to TE of clock gates and other one to all flops:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Core clocks should be off in scan mode and xcore flops should be forced to reset:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Print the list of Black boxes in the design.:TEXTAREA:Compulsory:USER_REPLY::To Be Done:To Be Done:INCORRECT
+All black boxes (ddr2dll, usbphy) should be in reset in scan mode:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Set_dont_touch on scan in/out  and compress enable nets:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Set_size_only for observation flops:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+No block other than occ should tap cgu_sclk0_en and cgu_sclk1_en directly from the PLL output:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Adjacent fill option should be used for shift power reduction:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+-shift_power_effort switch needs to be used to reduce power:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Capture power effort high should be used along with slightly increased power budget. The power budget is got from report_clocks gating  option in TMAX:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Are all Spare flops scannable flops. That is, are they Scan flops?:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Compare number of obs flops in DCT netlist and final netlist(ICC netlist) with obs flops in rtl and make sure that these are equal:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Check and validate that all faults on HPPWM outputs (for which obs flops have been added) are covered by atpg:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Check following after insert_dft and in the final netlist:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+a. Total number of scan chains stitched should be same as given in test protocol:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+b. There should be two scan enables; one going to all flops, other one to clock gates, run a script to check fanout of both scan enables:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+c. Two scan clocks with proper stagger value:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+d. No of flops inside core should be same as in the test model:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Dump core fault list from Tetramax for each release of core. It should have faults on axiclk domain only:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Use latest release of pad models for running Tetramax and pattern simulation. If some hacks are needed for Tetramax, do it on latest release only:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Final pattern simulation runs (in VCS) are with Real Core model?:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Are Logs/Reports from DFT Compiler Rule Checking pre-scan-insertion and post-scan-insertion/ TMAX DRC Rule Checking reviewed and signed-off?:RadioButton:Compulsory:Yes:Yes,No:To Be Done:To Be Done:INCORRECT
+Are we compliant with the RM Flow. Which version?:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Any hacks done to the memory models or any other ATPG models for any of blocks? If yes, give details (pointing to a file that has hack details is fine):RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Has HSIM been run in scan mode. If yes, give details on test used, run results, backannotation used etc:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Have we checked all internally developed models for correct behaviour in scan mode?:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+Have all the .libs (especially internal IPs) checked for correct timing arcs in scan mode?:RadioButton:Compulsory:USER_REPLY:Yes,No:To Be Done:To Be Done:INCORRECT
+:::::To Be Done:To Be Done:INCORRECT

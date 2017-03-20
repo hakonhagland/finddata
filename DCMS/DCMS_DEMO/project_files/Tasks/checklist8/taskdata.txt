@@ -1,0 +1,128 @@
+CONFIG checklist8 {
+DESCRIPTION:Fullchip Physical Design Checklist
+T/O Flow directory :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no max transition/capacitance violation:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are spare gates and spare routes in top level :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are spare clock buffers (4 NVT each) inserted near clock pins of blocks:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are decoupling caps in top level:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that decoupling caps in DPM use 3v transistors :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you signed-off formal verification with black-box for macros (please point logfiles + results) :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that PTSI noise sign-off is done at Fullchip level :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that PTSI delay sign-off is done at Fullchip level :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that REV letters/LOGO is added to the chip :RADIOBUTTON(Yes,No):Compulsory:Yes 
+Confirm that Pad ring is approved by PTE:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have done XOR of final pad ring with the pad ring that is handed off to PTE:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have high-voltage spare inverters in pad ring :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have spare level-shifters in the pad_ring for each  power domain:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have run via density flow in ICC using high effort switch:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that IO cells & pad ring both are approved for ESD robustness by Alan Righter :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Power connectivity to different power domains are correct and robust (visual check) :RADIOBUTTON(Yes,No):Compulsory:Yes 
+Confirm that you have visually verified that power connections to all IP's are strong ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there no floating portions of wiring :RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that all tape out layers exist in GDS :RADIOBUTTON(Yes,No):Compulsory:Yes  
+Confirm that voltage storm EMIR analysis is used to sign-off EFUSE programmation (VDDQ) wiring:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that latest version of Hercules executable used for LVS/DRC/ERC/ANT ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that latest version of Hercules TSMC DRC rule deck used:RADIOBUTTON(Yes,No):Compulsory:Yes 
+Confirm that DRC checks are enabled for AP-MD/RV/CB2 layer :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that ADI-17 assembly rules are met  :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have verified wire bond rule by TSMC:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no layers above topmost layer - AP is  present in the gds:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that hercules floating gate check is clean on the tapeout gds :RADIOBUTTON(Yes,No):Compulsory:Yes  
+Confirm that sign-off LVS is run with non-repeating M6 text for each signal, one per power domain, and text is placed only on bond head:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that hercules is used to make sure all 2.5v transistors are conforming to OVERDRIVE rules except those in the Efuse memory ? Verified in spice file manually ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that seal-ring related rules are met in Physical verification:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that versions of verilog/cdl netlists are sync'ed:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that netran invoke script is fully automated and contained to take the latest .wir and vg file:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that DRC is run by with TSMC L-mark seal-ring :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that pad rules and Circuit Under Pad rules are met in sign-off PV run:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that ptie open flow is clean on tapeout database:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that nwell open flow is clean on tapeout database:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that deep nwell (open) flow is clean on tapeout database:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no Poly/Diffusion used for routing/sourcing power :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that TIE cells are not used to supply power to any transitor/stdcell :RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that Tie cell does not supply power to DPM/L2 across physical boundary ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that LAYOUT_ERRORS file is clean, there are no CTHRU errors:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Reverse flow for checking the space of metal coverage polygons to other signal routes doesn't show any violations:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have done DFM enhancement flow using Hercules in addition to ICC :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have visually verified that tapeout GDS consists DFM enhancements :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that ESD implant checks on pads are done:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Contact to gate spacing for IO devices (TSMC + our custom pads) is verified and is correct:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no IO voltage signals connected to thin-oxide gates(CVDD transistors) (using Hercules HVtoLV_check)  ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no thin oxide transistors (from core-VDD) driving thick-oxide gates(IOVDD transistors) (except in level shifters. You are using Hercules LVtoHV_check):RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no signals crossing from one IOVDD domain to another without a level-shifter HVtoHV_check:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that adapter cells are placed properly:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that density requirement for AP-MD layer is met:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that VDD/VSS for PLLs/VREG are "kelvin" routed :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no Tie cells connected to source/drain of transistors ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Power/ground rails plotted and audited by atleast one external auditor:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that latest version of TSMC/Virage stdcells are used in tapeout gds(specify paths of std cells)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you audited the Clock routing from Sysosc to PLL:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you ensured that there is  Metal programability for RevId in PLL:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you audited 3v signal routes (width, spacing, route length) been done ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you checked and met  the ddr data/dqs timings across PVTF as specified by DDR designer ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you audited the routing of VDDRDY_3volts_ ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you checked whether all the bond pads , which are present in the RTL exists  in the final bond pad coordinates given to PTE?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that WBDMY layer is drawn and confirmed that it exists over the bond pad :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that ESD circuitry inside pads (incl. all power/ground) have HVT mask to reduce leakage:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you made sure that there is VIA stacking under CUP bond-pads ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that via enhancement/Metal fill requisite as specified by IP vendors is honoured:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Routing/metal blockage over IP blocks are honoured :RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you masked redundant Via addition over Logo/Revid:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no M1-M4 and V1-V3 extra polygons on the top of RAMS, (dummy polygons can be according to vendor suggestion):RADIOBUTTON(Yes,No):Compulsory:Yes
+Mention the flow used to verify route/blockage restrictions over IP blocks:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that EM & IR drop sign-off analysis is done the final fullchip:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that latest ROM-code is used in the tapeout GDS:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Efuse ESD and Efuse macro are of same voltage ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Efuse macro typical operating voltage 2.5V ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are Decaps present near clock buffers ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+What is the HVT/SVT percentage ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has 3V net noise been be multiplied by 3 for crosstalk analysis ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you have no  DM/DFM spill over on Bootrom not allowing it to program completely with VIAx mask alone in a REV ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that full chip variable  1 in hercules runset ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that PLL mock delay buffers are placed in corresponding PLL Kelvin power supply domain :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that no dummy metals are used for signal routing :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that there are no non-CK type cells in the clock tree (except Integrated Clock Gaters) :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that all spare gates input and output use M2 as minimum layer for routing ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have you checked that revid tie cell pins is tapped only at pin access location ? :RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you changed the revid to opposite values and run LVS/DRC ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that 3v tie connections do not use 1v tie cell ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you checked Synchronizer relative placement the worst distance between two latches/flops of synchronizer group elements:RADIOBUTTON(Yes,No):Compulsory:Yes
+what is the skew between core and system clock ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+What is the  delay of PLL feedback  ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+What is the delay numbers from XTAL to PLL < 0.8n? What is the insertion delay?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you ensured thet high drive strength buffers (beyond BUF16) are not used ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you checked that DDRCCLK and DQS are shielded properly ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that thermal diode Kelvin routing requirements are taken care of:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that all power/ground probe pads are texted and there are no text opens in LVS:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that EM (RMS) check on clock wiring is clean :RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you checked that there are no delay elements in feedback delay path ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that double vias (2x2) are used to route CCLK clock signal ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that spare cells are uniformly spread in the layout(have you verified this visually) :RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that you are using the latest version/release of the IP block in Fullchip, tapeout GDS :RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you reviewed nets in ICC whose route length is > 1000u:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you used power recovery and area recovery in ICC ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Vstorm IR drop/EM analysis logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that DRC has been run with recommendations turned on ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have you run check sum on tapeout gds ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you done a visual check of tapeout layers in tapeout gds:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you audited the layers present in tapeout gds ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you placed the VSSRSSTL pad  adjacent to VREFSSTL pad in the pad ring:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Hercules DRC,LVS,ERC,Antenna,coverage are run on sign-off GDS;all five checks are done :RADIOBUTTON(Yes,No):Compulsory:Yes
+Runsets used for Antenna:RADIOBUTTON(Yes,No):Compulsory:Yes
+Runsets used for DFM:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of drcf_dfm.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of drcf.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of lvs_ercfw.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of lvs.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of lvsf.ev:RADIOBUTTON(Yes,No):Compulsory:Yes      
+Path of TSMC metal fill utility:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of TSMC OD/PO fill utility:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of TSMC DRC.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for IR drop analysis logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Hercules DRC logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Hercules LVS logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Hercules ERC logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for DCT database and Constraints:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for ICC database and Constraints:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for ICC noise reports:RADIOBUTTON(Yes,No):Compulsory:Yes          
+}

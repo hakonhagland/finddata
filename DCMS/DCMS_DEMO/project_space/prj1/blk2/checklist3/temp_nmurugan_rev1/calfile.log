@@ -1,0 +1,10 @@
+---Log starts for /cad/adi/apps/adi/calfile/r2014-02-13/bin/calfile
+-calfile:reportTclErr tcl
+-calfile:verifyCALIBRE_BASE_PATH
+-calfile:exec setpaths -Silent -ftcl pf calibre | grep CALIBRE_PATH
+-calfile:eval {set env(CALIBRE_PATH) {} ; }
+-calfile:set env(CALIBRE_PATH) {}
+-calfile:set env(CALIBRE_BASE_PATH) {}
+-calfile:exec setpaths -Silent -ftcl pe calibre | grep CALIBRE_PATH
+-calfile:eval {set env(CALIBRE_PATH) {} ; }
+-calfile:set env(CALIBRE_PATH) {}

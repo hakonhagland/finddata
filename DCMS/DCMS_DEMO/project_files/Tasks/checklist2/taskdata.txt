@@ -1,0 +1,67 @@
+CONFIG checklist2 {
+DESCRIPTION:Block-level Physical Design Checklist
+Check max transition/capacitance violation:RADIOBUTTON(Yes,No):Compulsory:Yes
+Spare gates and spare routes inserted at block level :RADIOBUTTON(Yes,No):Compulsory:Yes
+Are Decoupling caps added at block level(enter the value of cap) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Hercules DRC/LVS/ERC/Antenna/coverage checks done ? :RADIOBUTTON(Yes,No):Compulsory:Yes
+Has Formal verification with black-box for macros done - logfiles + results :RADIOBUTTON(Yes,No):Compulsory:Yes
+Has PTSI flow for noise run at block level ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has PTSI flow for delay run at block level ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Hercules floating gate check clean on the gds ?:RADIOBUTTON(Yes,No):Compulsory:Yes  
+Has verify_pg check been done in ICC to check if there are any unconnected power pins for macros:RADIOBUTTON(Yes,No):Compulsory:Yes  
+Is via density flow run in ICC with high effort ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that there are no Floating portions of wiring in gds ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Ptie open flow clean on tapeout database (include the exception file if there are any)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Nwell open flow clean on tapeout database (include the exception file if there are any) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Deep nwell (open) flow clean on tapeout database (include the exception file if there are any)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has metal coverage been run in ICC   (mention the criteria used for adding the metal fill polygons)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Poly/Diffusion used for connecting power checked (include the exception file if there are any) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Flow for checking the space of metal coverage polygons to other signal routes ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that no gates are directly connected to power rails ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you done  DFM enhancement flow in hercules  ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Did we visually verify that DFM enhancements have indeed happened ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are you sure that DFM enhancements are instantiated in tapeout GDS ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Version of Hercules TSMC DRC rule deck used:RADIOBUTTON(Yes,No):Compulsory:Yes 
+What is the version of Hercules executable used for LVS/DRC/ERC/ANT ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that there are no forward biased diodes:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are versions of verilog/cdl netlists synced (print paths of cdl):RADIOBUTTON(Yes,No):Compulsory:Yes
+Has Netran been automated to take the  latest .wir file:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that no  tie cells are connected to source/drain of transistors ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that  dummy metals are not used for routing ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is Dummification exclusion on Macros guidelines followed? :RADIOBUTTON(Yes,No):Compulsory:Yes
+Are the latest version of TSMC stdcells used (print paths of stdcell libraries)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for DCT database and Constraints:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for ICC database and Constraints:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for ICC noise reports:RADIOBUTTON(Yes,No):Compulsory:Yes          
+Is the latest version of the block used in Fullchip ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you reviewed nets in ICC whose route length is > 1000u:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you used power recovery and area recovery in ICC ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Hercules DRC logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Hercules LVS logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you verified that there are no CTHRU errors in lvs layout error files(print path of the LVS layout error file):RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for Hercules ERC logfiles + reports:RADIOBUTTON(Yes,No):Compulsory:Yes
+Confirm that Via enhancement and metal fill status specified by IP vendor has been honoured:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have the latest ROM-code been used ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are there enough Dcaps present near clock buffers:RADIOBUTTON(Yes,No):Compulsory:Yes
+What is the HVT/SVT percentage in the design ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you confirmed that no DM/DFM spill over on Bootrom not allowing it to program completely with VIAx mask alone in a REV ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has route blockage on top of IP's fulfilled ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the restrictions on the top of IP routing been honoured (Mention the flow used to verify this) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you confirmed that other than ICG's , explicitly hand instantiated drivers and CTS inserted buffers no cells are present in the clock tree ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you confirmed that all spare gates input and output use M2 as minimum layer for routing?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Can you confirm that there are no any M1-M4 and V1-V3 extra polygons on the top of RAMS (list exceptions if any) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Synchronizer relative placement the worst distance between two latches/flops of synchronizer group elements:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are all synchronizers svt cells ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has RMS EM check requirement on clock network been done ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Does spare cells uniformly exist in the layout(have you verified this visually) ?:RADIOBUTTON(Yes,No):Compulsory:Yes 
+Do you have the right combination of spare gates (list the spare gates used) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Runsets used for Antenna:RADIOBUTTON(Yes,No):Compulsory:Yes
+Runsets used for DFM:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of drcf_dfm.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of lvs.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of TSMC metal fill utility:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of TSMC OD/PO fill utility:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of TSMC DRC.ev:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you visually verified that power connections to all IP's are strong ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have you ensured thet high drive strength buffers (beyond BUF16) are not used ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+}

@@ -1,0 +1,90 @@
+CONFIG checklist14 {
+DESCRIPTION:Synthesis checklist for L2 Block
+Design compiler version used for Final analysis:TextBox:Compulsory:2010.03-SP5
+Does the flow align with RM flow from synopsys?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Name & Version of Virage libraries used:TEXTAREA:Compulsory:USER_REPLY
+Virage stdcells version (given above) is the latest?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Target library:Textarea:Compulsory:USER_REPLY
+Other Libraries used:TEXTAREA:Compulsory:USER_REPLY
+Operating condition:Comment::
+set_operating_conditions command used:Textbox:Compulsory:USER_REPLY
+Operating condition File attachment:FILE_FIELD:Compulsory:USER_REPLY
+Suppressed Warnings/errors:Comment::
+Suppressed Warnings/errors File attachment:FILE_FIELD:Compulsory:USER_REPLY
+Verilog files analyze phase:Comment::
+What variables are `defined during the  synthesis "analyze" command?:Textarea:Compulsory:USER_REPLY
+Verilog files elaborate phase:Comment::
+Any ELAB/VER messages suppressed/waivered? Why?:TEXTAREA:Compulsory:USER_REPLY
+Elab.report:FILE_FIELD:Compulsory:USER_REPLY
+Case statements _\@_Are there any full/parallel cases that have 'no' in statistics for case statements in always block table of elab report?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Any sensitivity list violations?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Any latches inferred due to missing default statement in case?:radiobutton(Yes,No):Compulsory:No
+All latches infered have been justified by designers?:FILE_FIELD:Compulsory:USER_REPLY
+Any flip-flops which use both async reset and async set?:FILE_FIELD:Compulsory:USER_REPLY
+Designers & leads confirm that async set and async reset above are mutually exclusive:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Confirm, assertions exist in Gatesims to verify that async reset and async set above are mutually exclusive:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Check design - lint report:Comment::
+Lint report:FILE_FIELD:Compulsory:USER_REPLY
+Any LINT messages suppressed/waivered in check_design(lint) report ?:FILE_FIELD:Compulsory:USER_REPLY
+Is check timing clean?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Uniquify after Link:Comment::
+Confirm that uniquification is done:radiobutton(Done,Not_done):Compulsory:Done
+What is the uniqufiy naming style?:Textarea:Compulsory:USER_REPLY
+Don't use cells:Comment::
+List:Textarea:Compulsory:USER_REPLY
+Design DRCs:Comment::
+max_capacitance:Textbox:Compulsory:USER_REPLY
+max_transition:Textbox:Compulsory:USER_REPLY
+max_fanout:Textbox:Compulsory:USER_REPLY
+Constraints:Comment::
+Input drive or transition:Textbox:Compulsory:USER_REPLY
+Output load:Textbox:Compulsory:USER_REPLY
+Input delay (as a % of clock period):Textbox:Compulsory:USER_REPLY
+Output delay (as a % of clock period):Textbox:Compulsory:USER_REPLY
+Clock Definitions:FILE_FIELD:Compulsory:USER_REPLY
+Any case analysis? Why?:FILE_FIELD:Compulsory:USER_REPLY
+Ideal Nets:FILE_FIELD:Compulsory:USER_REPLY
+Dont touch:FILE_FIELD:Compulsory:USER_REPLY
+Compilation:Comment::
+Group paths done?:FILE_FIELD:Compulsory:USER_REPLY
+Critical ranges for various path groups?:Textbox:Compulsory:USER_REPLY
+Clock Gating:Comment::
+Automatic clock gating used?:Radiobutton(Yes,No):Compulsory:USER_REPLY
+Min bit width for gating?:Textbox:Compulsory:USER_REPLY
+Design reports:Comment::
+Area:Comment::
+Combinational cell area (in mmsq):Textbox:Compulsory:USER_REPLY
+Sequential cell area (in mmsq):Textbox:Compulsory:USER_REPLY
+Total cell area (in mmsq):Textbox:Compulsory:USER_REPLY
+Total flops:Textbox:Compulsory:USER_REPLY
+Total Latches:Textbox:Compulsory:USER_REPLY
+Tristate buffers:Textbox:Compulsory:USER_REPLY
+Total no. of std-cells:Textbox:Compulsory:USER_REPLY
+Number of HVT std-cells:Textbox:Compulsory:USER_REPLY
+Number of SVT cells:Textbox:Compulsory:USER_REPLY
+How many auto-clock-gating cells inserted?:Textbox:Compulsory:USER_REPLY
+Clock gating%:Textbox:Compulsory:USER_REPLY
+Timing:Comment::
+Qor report File attachement:FILE_FIELD:Compulsory:USER_REPLY
+Delay balancing:Comment::
+Max delay/skew for all input paths:Textbox:Compulsory:USER_REPLY
+Max delay/skew for all output paths including OE:Textbox:Compulsory:USER_REPLY
+Additional checks.:COMMENT:Compulsory:USER_REPLY
+All sync cells are SVT:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Modules with boundary opt turned on:Textarea:Compulsory:USER_REPLY
+REVID(metal programmability) is optimised?:radiobutton(Yes,No):Compulsory:No
+Construction deck constarints review:RADIOBUTTON(Done,Not_Done):Compulsory:USER_REPLY
+Justification for combo logic on input of synchroniser cell/between sync flop stages:TEXTAREA:Compulsory:USER_REPLY
+Justification for combo logic on input of async set/reset (SDN/CDN) pin of flop:TEXTBOX:Compulsory:USER_REPLY
+Modules ungrouped:FILE_FIELD:Compulsory:USER_REPLY
+Multiple drivers present on a net, wand/wor logic?:radiobutton(Yes,No):Compulsory:No
+Unmapped cells present in DCT synthesised netlist:radiobutton(Yes,No):Compulsory:No
+Soft bound/relative placement constraint exists for both flops of a 2 stage synchronizer?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Physical bounds created?:radiobutton(Yes,No):Compulsory:Yes
+Check for TIM175 warnings, validate paths broken:Textarea:Compulsory:USER_REPLY
+Confirm timing loops (OPT-150 messages) are not present.:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Check for flops directly on pll output clocks (not going thru occ module):FILE_FIELD:Compulsory:USER_REPLY
+confirm, buffers are not introduced on pll clk feedback path in DCT (from noisy power domain)?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+All of standard-custom cells except switches for bond-options removed from target library in synthesis:Textarea:Compulsory:USER_REPLY
+Confirm, that synthesis scripts, logs, reports and warnings are reviewed by one more person.:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+}

@@ -1,0 +1,8 @@
+CONFIG checklist17 {
+DESCRIPTION:test1
+checklist question with  elaborate response:TEXTAREA:Compulsory:USER_REPLY
+checklist question expecting a list of values from known options:CHECKBOX(response1,response2,response3):Compulsory:USER_REPLY
+checklist question expecting a file to be uploaded:FILE_FIELD:Compulsory:NO_CONFIRM
+checklist question expecting a yes or no.:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+checklist question expecting one option from a list of mutulally exclusive options:SCROLLING_LIST(option1,option2,option3,option4):Compulsory:USER_REPLY
+}

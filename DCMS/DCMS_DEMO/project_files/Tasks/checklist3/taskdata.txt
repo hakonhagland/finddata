@@ -1,0 +1,53 @@
+CONFIG checklist3 {
+DESCRIPTION:CAD Tapeout Checklist
+External IP and Process Collateral:COMMENT:Compulsory:USER_REPLY
+TSMC Std-Vt Std cell library (tcbn65lp):CHECKBOX(200a,200b):Compulsory:USER_REPLY
+TSMC High-Vt Std cell library (tcbn65lphvt):TEXTAREA:Compulsory:200a and 200b
+TSMC e –fuse library (tef65lp):TEXTAREA:Compulsory:140a
+TSMC e –fuse ESD library (tef65lpesd):TEXTAREA:Compulsory:140c
+TSMC DDR2 IO library (tpdn65lpgv2_memio_ddr2):TEXTAREA:Compulsory:140g
+Virage High-Vt ASAP-Logic High-Speed Tapless Std Cell Library(ts65npkhssta03):TEXTAREA:Compulsory:A03
+Virage Std-Vt ASAP-Logic High-Speed Tapless Std Cell Library(ts65npksssta03):TEXTAREA:Compulsory:A03
+TSMC Contact programmable ROM compiler (tsn65lpsrom):TEXTAREA:Compulsory:140b
+Virage ASAP Single Port High Speed Leakage Control Register File 32K Sync  (ts65npkb1p11assrl32ksa02 ):TEXTAREA:Compulsory:A02
+Virage SiWare Single Port High Density Leakage Control SRAM 512K Sync  (ts65npkb1p11sadsl512sa07p1):TEXTAREA:Compulsory:A07P1
+Virage SiWare Two Port High Density Leakage Control Register File 32K Sync  (ts65npkb2p11asdrl32ksa02p2):TEXTAREA:Compulsory:A02p2
+TSMC Spice model _\@_  DOC. NO._\@_  T-N65-CL-SP-009-P1 version:TEXTBOX:Compulsory:1.3p3
+TSMC SRAM spice model DOC No. T-N65-CL-CL-001  version:TEXTBOX:Compulsory:1.2
+TSMC StarXt model  from CADLIB  version:TEXTAREA:Compulsory:2.0
+TSMC StarXt model  from CADLIB  version, released date:TEXTAREA:Compulsory:110127
+TSMC Fire and Ice model (Voltagestorm)DOC No. T-N65-CL-SP-036-V2   version:TEXTBOX:Compulsory:1.1
+TSMC Hercules runsets from CADLIB version:TEXTAREA:Compulsory:2.0
+TSMC Hercules runsets from CADLIB version release date:TEXTAREA:Compulsory:110127
+CAD Tools/Versions:COMMENT:Compulsory:USER_REPLY
+cscope:TEXTBOX:Compulsory:cscope/2008.09-SP2
+de_env:TEXTBOX:Compulsory:de_env/1.0
+formality:TEXTBOX:Compulsory:formality/2010.12-SP2
+hercules:TEXTBOX:Compulsory:hercules/2008.09-SP1-3
+hsim:TEXTBOX:Compulsory:hsim/2010.03-SP2
+hspice:TEXTBOX:Compulsory:hspice/2010.03
+iccompiler:CHECKBOX(iccompiler/2010.03-SP5,iccompiler/2010.03-SP5-2):Compulsory:USER_REPLY
+incisive:CHECKBOX(incisive/9.20-s23,incisive/9.20-s33):Compulsory:USER_REPLY
+jtv:TEXTBOX:Compulsory:jtv/4.3.7
+magellan:TEXTBOX:Compulsory:magellan/2010.03-5
+mmav:CHECKBOX(mmav/3.3.008c_20110406,mmav/3.2.61):Compulsory:USER_REPLY
+nanosim:TEXTBOX:Compulsory:USER_REPLY
+primetime:CHECKBOX(primetime/2009.12-SP2,primetime/2010.12-SP2):Compulsory:USER_REPLY
+rs_bf:TEXTBOX:Compulsory:rs_bf/1.0
+starxt:TEXTBOX:Compulsory:starxt/2010.12-1
+syn:TEXTBOX:Compulsory:syn/2010.03-SP5
+tetramax:CHECKBOX(tetramax/2010.12-SP2-CS1,tetramax/2010.12-SP2,tetramax/2010.03-SP5):Compulsory:USER_REPLY
+vcs:CHECKBOX(vcs/2006.06-SP2,vcs/2009.06,vcs/2009.12-3,vcs/2010.06):Compulsory:USER_REPLY
+vstorm:TEXTBOX:Compulsory:vstorm/7.1.2
+DC Log File:FILE_FIELD_EXTRACT:Compulsory:USER_REPLY
+Warnings:AUTO_EXTRACT(DC Log File):Compulsory:USER_REPLY
+DbLoaded:AUTO_EXTRACT(DC Log File):Compulsory:USER_REPLY
+Test Pull down menu:PULLDOWNMENU(1,2,3):Compulsory:USER_REPLY
+Test scrolling list:SCROLLING_LIST(1,2,3,4,5,6,7,8,9,0):Compulsory:USER_REPLY
+test:FILE_FIELD_EXTRACT:Compulsory:USER_REPLY
+test:CHECKBOX():Compulsory:USER_REPLY
+test:CHECKBOX(a):Compulsory:USER_REPLY
+test:CHECKBOX(a b):Compulsory:USER_REPLY
+test:CHECKBOX(a):Compulsory:USER_REPLY
+test:FILE_FIELD:Compulsory:USER_REPLY
+}

@@ -1,0 +1,49 @@
+CONFIG checklist7 {
+DESCRIPTION:Front-End Design Checklist
+Have All the features mentioned in the Detailed functional specification implemented?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of spec:TEXTBOX:Compulsory:USER_REPLY
+For designs/BootROM/IP/collateral confirm that these have been copied in a separate directory for reference.:COMMENT:Compulsory:USER_REPLY
+Path to Mbist Code generation:TEXTBOX:Compulsory:USER_REPLY
+Transfer path:TEXTBOX:Compulsory:USER_REPLY
+Bootcode path:TEXTBOX:Compulsory:USER_REPLY
+Is this the bootrom code which is used for layout/mask generation?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Path to Virage Memory models:TEXTBOX:Compulsory:USER_REPLY
+Is there any hack done inside the model?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Path to eFuse model:TEXTBOX:Compulsory:USER_REPLY
+For efuse Models, is there any hack done inside the model?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Path to EMAC generation:TEXTBOX:Compulsory:USER_REPLY
+Path to ARM arbiter for DDE:TEXTBOX:Compulsory:USER_REPLY
+Confirmations:COMMENT:Compulsory:USER_REPLY
+Confirm that the latest versions of designs are taken-into the chip tapeout database ( RTL,schematics ):TEXTAREA:Compulsory:USER_REPLY
+Confirm that a "final signoff" on the all modules has been taken from owners regarding hookup and correct top level block has been instantiated:TEXTAREA:Compulsory:USER_REPLY
+Spares for pad ring:COMMENT:Compulsory:USER_REPLY
+Do we have enough spare inverters (3v) in the pad ring:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Do we have enough spare level up shifters in the pad ring?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Do we have enough spare level down shifters in the pad ring?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Do we have level shifters for crossing from one IOVDD domain to another.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Delay  cells near pads for AC timing fixes?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+List of blocks in Devonshire_\@_:TEXTAREA:Compulsory:USER_REPLY
+Have all Design Micro-arch Reviews completed and Meeting Minutes/AIs documented in issue manager?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Has the "design review checklist document" been filled for all the above designs ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have any code reviews taken place ? Which designs ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Has the PADRING.XLS file been manually and thoroughly reviewed?:TEXTAREA:Compulsory:USER_REPLY
+Path for the final PADRING.XLS file ( used for the padring in the final tapeout database):TEXTBOX:Compulsory:USER_REPLY
+Has the pads.v generated from XLS(automated generation)?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Path for the TAPEOUT RTL Integration ( Confirm it's a Integration and not a Configuration ):TEXTAREA:Compulsory:USER_REPLY
+Is this linked to TAPEOUT_R0.0/ ?:TEXTAREA:Compulsory:USER_REPLY
+Confirm that No DV agent "Forces" a design signal:TEXTAREA:Compulsory:USER_REPLY
+What's the procedure to check this exhaustively?:TEXTAREA:Compulsory:USER_REPLY
+List all the places where wire delays(# delays) are used in the RTL and give justification.:TEXTAREA:Compulsory:USER_REPLY
+List all the Designs which have a functional model ?  Checks to make sure the functional model is equivalent to implementation:TEXTAREA:Compulsory:USER_REPLY
+List all Designs which have been replaced/modified such that a mismatch exists - Explain reasons for mismatch ?:TEXTAREA:Compulsory:USER_REPLY
+Additional in Devonshire:COMMENT:Compulsory:USER_REPLY
+Check if active low signals go through cdc modules:TEXTAREA:Compulsory:USER_REPLY
+Duplicate file names and module names:TEXTAREA:Compulsory:USER_REPLY
+Confirm that the Tapeout schematic database is available as a separate snapshot.:TEXTAREA:Compulsory:USER_REPLY
+Confirm that no schematic file is still checked out by any user.:TEXTAREA:Compulsory:USER_REPLY
+Confirm that the final dracula and the verilog netlist is done from the above tapeout snapshot.:TEXTAREA:Compulsory:USER_REPLY
+Has spyglass been run for all blocks?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+On which all blocks spyglass cdc was run?:TEXTAREA:Compulsory:USER_REPLY
+Has all the verilog warnings being checked for lint/elab?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are there any hacks done in .sp/.cdl/.herc?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+}

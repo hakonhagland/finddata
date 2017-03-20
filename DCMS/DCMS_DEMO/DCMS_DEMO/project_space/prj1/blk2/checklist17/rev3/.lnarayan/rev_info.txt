@@ -1,0 +1,5 @@
+checklist question with  elaborate response:TEXTAREA:Compulsory:USER_REPLY::To Be Done:To Be Done:Cant_say
+checklist question expecting a list of values from known options:Checkbox:Compulsory:USER_REPLY:response1,response2,response3:response1 response2 response3 :To Be Done:Cant_say
+checklist question expecting a file to be uploaded:FILE_FIELD:Compulsory:NO_CONFIRM::/prj1/blk2/checklist17/temp_lnarayan_rev3/3NO_FILE_ATTACHED:To Be Done:
+checklist question expecting a yes or no.:RadioButton:Compulsory:USER_REPLY:yes,no:yes:To Be Done:Cant_say
+checklist question expecting one option from a list of mutulally exclusive options:Scrolling_list:Compulsory:USER_REPLY:option1,option2,option3,option4:option1:To Be Done:Cant_say

@@ -1,0 +1,1093 @@
+
+#!/usr/bin/env perl
+#q
+# Description: 
+# This webpage displays the information related to bqueues,bload,bhappy and bacct.The information seen in this webpage
+#has been modified so as to make it user friendly.
+# 
+# Author:Prashanth Nayak
+# Date  :19/04/2016
+#
+# Revision
+#   
+#19-April-2016: pnayak: Initial Release
+#
+
+require "/usr/cadtools/bin/modules.dir/module.pm" ;
+require '../lib/html_utils.pl';
+BEGIN {
+	push (@INC,"../lib");	
+	push (@INC,"../lib/GraphUtils/lib");
+}
+#!/usr/bin/env perl
+# Include the packages first
+BEGIN {
+    push (@INC,"../lib");	
+    push (@INC,"../lib/GraphUtils/lib");
+}
+
+
+# Warnings and Strict are commented due to some strange behaviour of hashes
+#use warnings;
+#use strict;
+use CGI qw/:all/;
+use CGI ':cgi-lib';
+use CGI::Carp qw(fatalsToBrowser);
+use File::Basename;
+require '../lib/html_utils.pl';
+use encryption;
+use DBI;
+use Net::LDAP;
+use POSIX;
+use Date::Format;
+use Switch;
+# Datagen package for XML dump for graphs
+#use Graph_DataGen;
+use Date::Parse;
+# Use Plotter
+#use Plotter::InitCharts;
+
+### Loading rs moudule for web
+&module("load rs");
+
+
+# Warnings and Strict are commented due to some strange behaviour of hashes
+use CGI qw/:all/;
+use CGI ':cgi-lib';
+use CGI::Carp qw(fatalsToBrowser);
+use DBI;
+
+### Global Variables
+
+$GLOBAL{'CURRENT_PAGE'} = self_url;
+$GLOBAL{'HOME'} = $GLOBAL{'CURRENT_PAGE'};
+$GLOBAL{'HOME'} =~s/\?.*//;
+my %GLOBAL =();
+$GLOBAL{'CONTACT_SUPPORT'} = 'bhargav.bhat@analog.com';
+$GLOBAL{'CURRENT_PAGE'} = self_url;
+$GLOBAL{'HOME'} = $GLOBAL{'CURRENT_PAGE'};
+$GLOBAL{'HOME'} =~s/\?.*//;
+
+# Get all the CGI variables into a single hash
+my $CGI_params = Vars;
+my %CGI_PARAM  = %$CGI_params;
+
+%MACHINE_DATA=();
+##function calls
+ ShowHeader();
+
+ShowContents();
+
+### Header ###
+sub ShowHeader {  
+	print "Content-type: text/html\n\n";
+
+	my $message = "<BR><i> Data served by $Mode, Refresh the page to see latest information</i><BR>";   
+print <<HEADER;
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title><center>RS Dash-Board</center></title>
+		</head> 
+		<head>
+	<link rel="stylesheet" type="text/css" href="../lib/DataTables/media/css/jquery.dataTables.css"> 
+       		<link rel="stylesheet" type="text/css" href="../lib/DataTables/examples/resources/syntax/shCore.css">
+		<script language="javascript" type="text/javascript" src="../lib/flot/current/jquery.js"></script>
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/media/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/examples/resources/syntax/shCore.js"></script>
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/examples/resources/demo.js"></script>
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/extensions/ColVis/js/dataTables.colVis.js"></script>         
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/extensions/TableTools/js/dataTables.tableTools.js"></script>                <script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.js"></script>
+	<!--	 <script language="javascript" type="text/javascript" src="  ../lib/flot/current/demo_table.css"></script> -->
+        		 <script language="javascript" type="text/javascript" src="  ../lib/new_style.css"></script>
+
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.categories.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.pie.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.stack.js"></script>
+		<script language="javascript" type="text/javascript" src=" ../lib/flot/current/jquery.flot.axislabels.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.resize.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.tooltip.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.flot.navigate.js "></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/date.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.dataTables.min.js"></script>
+		<script language="javascript" type="text/javascript" src="  ../lib/flot/current/jquery.validate.js"></script>
+		<script language="javascript" type="text/javascript" src="../lib/flot_test.js"></script>
+		<script language="javascript" type="text/javascript" src="../lib/flot.js"></script>
+	<link rel="stylesheet" type="text/css" href="../lib/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="../lib/DataTables/media/css/jquery.dataTables.css"> 
+	<link rel="stylesheet" type="text/css" href="../lib/DataTables/examples/resources/syntax/shCore.css">
+	<!--	<link rel="stylesheet" type="text/css" href=" ../lib/mystyle.css">-->
+	<!--	<link rel="stylesheet" type="text/css" href="../lib/DataTables/extensions/ColVis/css/dataTables.colVis.css"> 
+		<link rel="stylesheet" type="text/css" href="../lib/DataTables/extensions/TableTools/css/dataTables.tableTools.css"> -->
+	<!--	<link rel="stylesheet" type="text/css" href="../etc/css/styles.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../lib/DataTables/media/css/responsive.dataTables.min.css"/>
+
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/examples/resources/syntax/shCore.js"></script>
+		<script type="text/javascript" language="javascript" src="../lib/DataTables/examples/resources/demo.js"></script>
+
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="-1">
+
+		
+		</head>
+HEADER
+}
+
+
+## mysq connect ###
+sub connect {
+	$host     = "devgam.spd.analog.com";
+	$database = "rs_dashboard" ;
+	$user     = "db_cad" ;
+	$pw       = "Cad123";
+
+	my $dsn = "DBI:mysql:host=$host";
+	my $dbh = DBI->connect($dsn, $user, $pw) ||
+		die "ERROR: can't connect to database server\n";
+	return $dbh;
+}
+
+
+### contents###
+sub ShowContents {
+        header_page();
+	pend_reasons_desc();
+	ShowBhappy();
+#	print "$sql_new_time \n";
+	#print "Site=$site_selected" ;
+	    
+#	pending_running_partition();
+	job_type();
+	machine_status();
+	##print_overall_usage();   
+	ShowBqueues();
+	ShowBload();
+        print_overall_summary();  
+}
+
+
+#### printing overall ussage #####
+sub machine_status
+{
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select * from machine_status where site=\"$site_selected\" order by time desc limit 1;";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not in7sert data";
+	if(my @columns = $sth->fetchrow_array() ) {
+		for(my $i=0;$i<@columns;$i++) {
+			if($i==0 )
+			{
+				$sql_time=$columns[$i];
+				next;
+
+			} 		  
+			$MACHINE_DATA{$i}{'align'} = 'center';		  
+			$MACHINE_DATA{$i}{'ENTRY'} = "$columns[$i]";		
+		}	    
+	}
+}
+
+### function for computing the job type###
+sub job_type
+{
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select * from job_type where time=$sql_time and site=\"$site_selected\";";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not in7sert data";
+	while(my @columns = $sth->fetchrow_array() ) {
+		for(my $i=0;$i<@columns;$i++) {
+			if($i==0 )
+			{
+				next;
+
+			} 
+			if($i==2)
+			{		  
+				$JOB_DATA_pend{$columns[1]} = "$columns[$i]";		
+			}
+			if($i==3)
+			{		  
+				$JOB_DATA_run{$columns[1]} = "$columns[$i]";		
+			}
+
+		}	    
+
+	}
+
+	$sth->finish;
+	$DBH->disconnect();
+}
+
+### printing the over all status and the pie charts####
+sub print_overall_usage
+{print"**************** \n";
+
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select * from summary where site=\"$site_selected\" order by time desc limit 1;;";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not in7sert data";
+	print "<script language=\"javascript\" type=\"text/javascript\"> \n"; 
+	print "\$(document).ready(function(){ \n";
+	%TABLE_DATA =();        
+	while (my @columns = $sth->fetchrow_array() ) {
+		my %TABLE_DATA =();        
+		for(my $i=0;$i<@columns;$i++) {
+			if($i==0 )
+			{
+				$sql_time=$columns[$i];
+				next;
+
+			} 		  
+			$TABLE_DATA{$i}{'align'} = 'center';		  
+			$TABLE_DATA{$i}{'ENTRY'} = "$columns[$i]";		
+		}	    
+		$cpu_in_use=$TABLE_DATA{6}{'ENTRY'}-$TABLE_DATA{7}{'ENTRY'}-$TABLE_DATA{8}{'ENTRY'}-$TABLE_DATA{9}{'ENTRY'};
+		$free_cpu_slots=$TABLE_DATA{4}{'ENTRY'}-$TABLE_DATA{3}{'ENTRY'};
+		print "var data_cpu = [[\"Free \($free_cpu_slots\)\",\"$free_cpu_slots\"],\
+				       [\"Used \($TABLE_DATA{3}{'ENTRY'}\)\",\"$TABLE_DATA{3}{'ENTRY'}\"]] \n";
+		$used_cpu_load=$TABLE_DATA{1}{'ENTRY'};
+		$free_cpu_load=100-$used_cpu_load;
+		$avg_cpu_load=$TABLE_DATA{1}{'ENTRY'};
+		$cpu_util= "$TABLE_DATA{2}{'ENTRY'} %";
+		$used_slots=$TABLE_DATA{3}{'ENTRY'};
+		$max_slots=$TABLE_DATA{4}{'ENTRY'};
+		$no_of_machines=$TABLE_DATA{6}{'ENTRY'};
+	        print "**** $TABLE_DATA{6}{'ENTRY'} \n";
+		print "var data_load = [[\"Used Cpu Load\",$used_cpu_load],[\"Free Cpu Load\",$free_cpu_load]]; \n";
+		print "var data_running=[[\"Adice \($JOB_DATA_run{adice}\)\",$JOB_DATA_run{adice}],\
+					 [\"Incisive \($JOB_DATA_run{incisive}\)\",$JOB_DATA_run{incisive}],\
+					 [\"Spectre \($JOB_DATA_run{spectre}\)\",$JOB_DATA_run{spectre}],\
+					 [\"Vcs \($JOB_DATA_run{vcs}\)\",$JOB_DATA_run{vcs}],\
+					 [\"Calibre \($JOB_DATA_run{calibre}\)\",$JOB_DATA_run{calibre}],\
+					 [\"Others \($JOB_DATA_run{others}\)\",$JOB_DATA_run{others}]\
+ 					 ]; \n";
+		print "var data_pending=[[\"Adice \($JOB_DATA_pend{adice}\)\",$JOB_DATA_pend{adice}],\
+				         [\"Incisive \($JOB_DATA_pend{incisive}\)\",$JOB_DATA_pend{incisive}],\
+					 [\"Spectre \($JOB_DATA_pend{spectre}\)\",$JOB_DATA_pend{spectre}],\
+					 [\"Vcs \($JOB_DATA_pend{vcs}\)\",$JOB_DATA_pend{vcs}],\
+					 [\"Calibre \($JOB_DATA_pend{calibre}\)\",$JOB_DATA_pend{calibre}],\
+					 [\"Others \($JOB_DATA_pend{others}\)\",$JOB_DATA_pend{others}]\
+					]; \n";
+		print "var data_pend=[[\"DOWN\",\"$MACHINE_DATA{1}{'ENTRY'}\"],[\"Available\",$MACHINE_DATA{2}{'ENTRY'}],[\"calibre\",$pend_count{calibre}],[\"spectre\",$pend_count{spectre}],[\"Incisive\",$pend_count{incisive}],[\"others\",$pend_count{others}]]; \n";
+		print "var data_machine=[[\"Available \($MACHINE_DATA{2}{'ENTRY'}\)\",$MACHINE_DATA{2}{'ENTRY'}],\
+					 [\"Closed \($MACHINE_DATA{5}{'ENTRY'}\)\",$MACHINE_DATA{5}{'ENTRY'}],\
+				         [\"Used \($MACHINE_DATA{3}{'ENTRY'}\)\",$MACHINE_DATA{3}{'ENTRY'}],\
+					 [\"Busy \($MACHINE_DATA{4}{'ENTRY'}\)\",$MACHINE_DATA{4}{'ENTRY'}],\
+					 [\"Reserved \($MACHINE_DATA{6}{'ENTRY'}\)\",$MACHINE_DATA{6}{'ENTRY'}],\
+                                         [\"Down \($MACHINE_DATA{1}{'ENTRY'}\)\",$MACHINE_DATA{1}{'ENTRY'}]] \n";
+		foreach $feature(keys %JOB_DATA_run)
+		{
+			$total_running_jobs +=$JOB_DATA_run{$feature};
+
+		}
+	}
+	#$no_of_machines=`bload | grep lin | wc -l`;
+	print   " \n pieChart(\"placeholder30\",data_machine,{title:\"<b>Machine Status</b>\"});";
+	print   " \n pieChart(\"placeholder29\",data_cpu,{title:\"<b>CPU Slots</b>\"});\n";
+	print   " \n pieChart(\"placeholder39\",data_running,{title:\"<b>Jobs Running</b>\"});\n";
+	print   " \n pieChart(\"placeholder41\",data_pending,{title:\"<b>Jobs Pending</b>\"});\n";
+	print "});";
+	print "</script>";
+        print "<table border=\"1\" style=\"width: 1600px;align=\"center\">  <tbody>   <tr> \n";
+        print "</tr> </tbody></table></table> \n";
+	print "<table border=\"3\" style=\"width: 1600px;align=\"center\">  <tbody>   <tr> \n";
+	print " <td style=\"width: 900px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 20px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder32\" ><b><center>CPU Load Average <center>&nbsp&nbsp&nbsp:</b>	$avg_cpu_load % <br><br><b>CPU Slot Utilization&nbsp&nbsp:</b>&nbsp$cpu_util <br><br><b>Total Machines &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</b> $no_of_machines <br><br><b>Total CPU Slots&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  :</b> $max_slots<br><br><b>Jobs Pending&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :</b> $total_pending_jobs<br><br><b>Jobs Running&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :</b> $total_running_jobs<br><br></div> </td> \n"; 
+	print " <td style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder29\" ></div> </td>  \n";
+      #	print "<table border=\"1\" style=\"width:200px;height:50px;align=\"right\">\n";
+       # print "<tr> <td> o </td></tr> \n";
+       # print "</table></td> \n";
+
+
+	print " <td style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder30\" ></div> </td> \n";
+	print " <td style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder39\" ></div> </td> \n";
+	print " <td style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder41\" ></div> </td> \n";
+
+	print "</tr> </tbody></table></table> \n";
+	$sth->finish;
+	$DBH->disconnect();
+}
+
+sub header_page
+{
+
+print "		<table nosave=\"\" border=\"0\" cols=\"2\" width=\"100%\"> \n";                              
+print "		<tbody> \n";
+print "		<tr style=\"font-weight: bold;\" > \n";         
+print "		<td style=\"border:none\"><img alt=\"\" src=\"../adi_images/ADI_Logo_AWP.png\" style=\"width: 200px; height: 60px;\"></td> \n";
+print "	        <td style=\"border:none; width: 60%; height: 60px;\"> <font size=\"8\"><center> RS Dash Board</center></td> \n";
+print "<td style=\"border:none; width: 800px;align:right\"> \n";
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select distinct site from summary;";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not in7sert data";
+	while (my @columns = $sth->fetchrow_array() ) {
+		for(my $i=0;$i<@columns;$i++) {
+			#print "*** $columns[$i] \n";
+                      if($columns[$i] =~/^\s*$/)
+                       {
+                           next;
+		      }
+                     else
+                     {
+			push(@values,$columns[$i]);
+                       #print "** $columns[$i] \n";
+                     }
+}
+ }	    
+
+print start_form();
+
+print " <br> &nbsp<B>Site</B> &nbsp";
+$site_selected="bangalore";
+#@values=@columns;
+#my @values = ('Bangalore', 'Norwood','Wilmington','Limerick');
+print popup_menu(
+       -name    => 'popup1',
+       -values  => \@values,
+       -default => 'value2'
+         );
+print "&nbsp &nbsp &nbsp &nbsp &nbsp  ";
+print hidden(-name =>"view",
+      -value => $CGI_PARAM{'view'});  
+print submit('submit');
+print end_form;
+
+ $site_selected = $CGI_PARAM{'popup1'};
+if($site_selected =~ /^\s*$/)
+{
+
+$site_selected="bangalore";
+}
+
+print "	</td></tr> \n";
+
+print "</tbody> \n";
+print "</table> \n";
+
+
+}
+
+sub print_overall_summary  
+{
+
+
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select * from summary where site=\"$site_selected\" order by time desc limit 1;;";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not in7sert data";
+	print "<script language=\"javascript\" type=\"text/javascript\"> \n"; 
+	print "\$(document).ready(function(){ \n";
+	%TABLE_DATA =();        
+	while (my @columns = $sth->fetchrow_array() ) {
+		my %TABLE_DATA =();        
+		for(my $i=0;$i<@columns;$i++) {
+			if($i==0 )
+			{
+				$sql_time=$columns[$i];
+				next;
+
+			} 		  
+			$TABLE_DATA{$i}{'align'} = 'center';		  
+			$TABLE_DATA{$i}{'ENTRY'} = "$columns[$i]";		
+		}	    
+		$cpu_in_use=$TABLE_DATA{6}{'ENTRY'}-$TABLE_DATA{7}{'ENTRY'}-$TABLE_DATA{8}{'ENTRY'}-$TABLE_DATA{9}{'ENTRY'};
+		$free_cpu_slots=$TABLE_DATA{4}{'ENTRY'}-$TABLE_DATA{3}{'ENTRY'};
+		print "var data_cpu = [[\"Free \($free_cpu_slots\)\",\"$free_cpu_slots\"],\
+				       [\"Used \($TABLE_DATA{3}{'ENTRY'}\)\",\"$TABLE_DATA{3}{'ENTRY'}\"]] \n";
+		$used_cpu_load=$TABLE_DATA{1}{'ENTRY'};
+		$free_cpu_load=100-$used_cpu_load;
+		$avg_cpu_load=$TABLE_DATA{1}{'ENTRY'};
+		$cpu_util= "$TABLE_DATA{2}{'ENTRY'} %";
+		$used_slots=$TABLE_DATA{3}{'ENTRY'};
+		$max_slots=$TABLE_DATA{4}{'ENTRY'};
+		$no_of_machines=$TABLE_DATA{6}{'ENTRY'};
+
+		print "var data_load = [[\"Used Cpu Load\",$used_cpu_load],[\"Free Cpu Load\",$free_cpu_load]]; \n";
+		print "var data_running=[[\"Adice \($JOB_DATA_run{adice}\)\",$JOB_DATA_run{adice}],\
+					 [\"Incisive \($JOB_DATA_run{incisive}\)\",$JOB_DATA_run{incisive}],\
+					 [\"Spectre \($JOB_DATA_run{spectre}\)\",$JOB_DATA_run{spectre}],\
+					 [\"Vcs \($JOB_DATA_run{vcs}\)\",$JOB_DATA_run{vcs}],\
+					 [\"Calibre \($JOB_DATA_run{calibre}\)\",$JOB_DATA_run{calibre}],\
+					 [\"Others \($JOB_DATA_run{others}\)\",$JOB_DATA_run{others}]\
+ 					 ]; \n";
+		print "var data_pending=[[\"Adice \($JOB_DATA_pend{adice}\)\",$JOB_DATA_pend{adice}],\
+				         [\"Incisive \($JOB_DATA_pend{incisive}\)\",$JOB_DATA_pend{incisive}],\
+					 [\"Spectre \($JOB_DATA_pend{spectre}\)\",$JOB_DATA_pend{spectre}],\
+					 [\"Vcs \($JOB_DATA_pend{vcs}\)\",$JOB_DATA_pend{vcs}],\
+					 [\"Calibre \($JOB_DATA_pend{calibre}\)\",$JOB_DATA_pend{calibre}],\
+					 [\"Others \($JOB_DATA_pend{others}\)\",$JOB_DATA_pend{others}]\
+					]; \n";
+		print "var data_pend=[[\"DOWN\",\"$MACHINE_DATA{1}{'ENTRY'}\"],[\"Available\",$MACHINE_DATA{2}{'ENTRY'}],[\"calibre\",$pend_count{calibre}],[\"spectre\",$pend_count{spectre}],[\"Incisive\",$pend_count{incisive}],[\"others\",$pend_count{others}]]; \n";
+		print "var data_machine=[[\"Available \($MACHINE_DATA{2}{'ENTRY'}\)\",$MACHINE_DATA{2}{'ENTRY'}],\
+					 [\"Closed \($MACHINE_DATA{5}{'ENTRY'}\)\",$MACHINE_DATA{5}{'ENTRY'}],\
+				         [\"Used \($MACHINE_DATA{3}{'ENTRY'}\)\",$MACHINE_DATA{3}{'ENTRY'}],\
+					 [\"Busy \($MACHINE_DATA{4}{'ENTRY'}\)\",$MACHINE_DATA{4}{'ENTRY'}],\
+					 [\"Reserved \($MACHINE_DATA{6}{'ENTRY'}\)\",$MACHINE_DATA{6}{'ENTRY'}],\
+                                         [\"Down \($MACHINE_DATA{1}{'ENTRY'}\)\",$MACHINE_DATA{1}{'ENTRY'}]] \n";
+		foreach $feature(keys %JOB_DATA_run)
+		{
+			$total_running_jobs +=$JOB_DATA_run{$feature};
+
+		}
+	}
+#	$no_of_machines=`bload | grep lin | wc -l`;
+	print   " \n pieChart(\"placeholder30\",data_machine,{title:\"<b><center>Machine Status<center></b>\"});";
+	print   " \n pieChart(\"placeholder29\",data_cpu,{title:\"<b><center>CPU Slots</center></b>\"});\n";
+	print   " \n pieChart(\"placeholder39\",data_running,{title:\"<b><center>Jobs Running</center></b>\"});\n";
+	print   " \n pieChart(\"placeholder41\",data_pending,{title:\"<b><center>Jobs Pending</center></b>\"});\n";
+	print "});";
+	print "</script>";
+
+##################################################################
+print "		<table style=\"text-align: center; width: 100%; height: 4px;\" border=\"0\" cellpadding=\"2\" cellspacing=\"2\"> \n";
+print "		<tbody> \n";
+print "		<tr style=\"font-weight: bold;\" align=\"center\"> \n";
+print "		<td colspan=\"1\" rowspan=\"1\"  style=\"background-color:rgb(135,206,250); height: 38px;\"<center>TIMESTAMP:$sql_new_time <center>SITE:$site_selected</center></td> \n";
+print "		</tr> \n";
+print "		</tbody> \n";
+print "		</table> \n";
+#<br><br><br><br><br><br><b>Jobs Running&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp :</b> $total_running_jobs
+print "<table style=\"border:none;border-color:black;width: 100%;\" border=\"1\"\"> \n";
+print "      <tbody> \n"; 
+print "	<tr> \n";
+print "	  <td colspan=\"1\"> <b>CPU Load Average :</b>$avg_cpu_load % </td> \n";
+print "	  <td colspan=\"1\"><b>CPU Slot Utilization :</b>$cpu_util  </td> \n";
+print "	  <td colspan=\"1\"><b>Total Machines :</b>$no_of_machines </td> \n";
+print "	  <td colspan=\"1\"><b>Total CPU Slots:</b> $max_slots </td> \n";
+print "	  <td colspan=\"1\"><b>Jobs Pending :</b> $total_pending_jobs </td> \n";
+print "	  <td colspan=\"1\"><b>Jobs Running :</b> $total_running_jobs </td> \n";
+print "	</tr> \n";
+#print "	<tr> \n";
+print "</tbody></table> \n";
+#print "**** $site_selected \n";
+print "<table style=\"border:none;border-color:black;width: 100%;\" border=\"1\"\"> <tbody>\n";
+
+
+	print " <td colspan=\"1\" style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder29\" ></div> </td>  \n";
+	print " <td colspan=\"1\" style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder30\" ></div> </td> \n";
+	print " <td colspan=\"1\" style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder39\" ></div> </td> \n";
+	print " <td colspan=\"1\"style=\"width: 800px;height: 200px;padding-left: 40px;padding-right: 40px;padding-top:0px;padding-bottom: 40px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder41\" ></div> </td> \n";
+
+
+print "	</tr> \n";
+print "      </tbody> \n";
+print "    </table>  \n";
+print "<table style=\"border:none;border-color:black;width:100%;\" border=\"1\"\"> <tbody>\n";
+	print "<tr> <td style=\"width: 100%;padding-left: 10px;padding-right: 40px;padding-top:0px;padding-bottom: 20px;padding-top: 20px;font-style:x-small;\"> \n";
+	print " <div id=\"placeholder28\"; style=\"width:1100px\" ></div></td></tr> \n"; 
+	print "</tbody></table></table> \n";
+
+print "<table style=\"border:none;border-color:black;width:100%;\" border=\"1\"\"> <tbody>\n";
+
+	print " <tr><td style=\"width:100%;padding-left: 10px;padding-right: 40px;padding-top:0px;padding-bottom: 20px;padding-top: 20px;\"> \n";
+	print " <div id=\"placeholder49\"; style=\"width:1100px\" ></div></td></tr> \n"; 
+print "</tbody></table></table> \n";
+
+print "<table style=\"border:none;border-color:black;width:100%;\" border=\"1\"\"> <tbody>\n";
+
+	print " <tr><td style=\"width:100%;padding-left: 10px;padding-right: 40px;padding-top:0px;padding-bottom: 20px;padding-top: 20px;\"> \n";
+
+	print " <div id=\"placeholder26\"; ></div> </td>\n";
+	print "</tr> </tbody></table></table> \n";
+
+}
+
+### Bqueues table ###
+sub ShowBqueues {
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select * from bqueues where time=$sql_time and site=\"$site_selected\";";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not insert data";
+	print "<script language=\"javascript\" type=\"text/javascript\"> \n"; 
+	print "\$(document).ready(function(){ \n";
+	print "var header = [\"Queue Description\",\"Queue Name\",\"Priority\",\"Jobs Pending\",\"Jobs Running\",\"License Allotment\",\"Slots Used\",\"Slots Free\",\"CPU Load Avg\",\"Allowed Users\"];\n";    
+	print "var data = [ ";
+	%TABLE_DATA =();        
+	while (my @columns = $sth->fetchrow_array() ) {
+		my %TABLE_DATA =();        
+		for(my $i=0;$i<@columns;$i++) {
+			next if($i==2||$i==8 );
+			if($i==0)
+			{
+				$TABLE_DATA{0}{'align'} = 'center';
+				$TABLE_DATA{0}{'ENTRY'} = "<img src='../lib/DataTables/examples/resources/details_open.png'>";
+				next;
+			}   
+			if($i==7)
+			{
+				$columns[$i]="$columns[$i]";
+			}
+			if($i==10)
+			{
+				$columns[$i]="$columns[$i] %";
+
+			}
+			if($i==11)
+			{      	 
+				$queue_allowed_user{$columns[1]}=$columns[$i];
+                                 
+				$queue_desc{$columns[1]}=$columns[2];
+                                @temp=split("",$columns[$i]);   
+                                $temp=@temp;
+                                if($temp>0)
+                                 {
+
+
+                                  }
+                                 else
+                                  {
+					$columns[$i]="ALL";
+
+                                  }
+                               # if($columns[$i]="")
+                                #  {
+                                 #   $columns[$i]="ALL";
+				# }	
+                                
+
+			}		  
+			$TABLE_DATA{$i}{'align'} = 'center';		  
+			$TABLE_DATA{$i}{'ENTRY'} = "$columns[$i]";		
+		}	    
+		&AddTableRow1(\%TABLE_DATA);
+		$queue_hash{$columns[1]}=$columns[12];		
+	}
+	print "];\n";
+	print "\n table(\"placeholder49\",data,{title:\"<BR><font size=20><b><center>RS Queue Status<center></b></font><BR>\",colTitles:header})\n";
+	print "  var otable = \$('#placeholder49-table').DataTable({ \n";
+	print " retrieve: true, \n";
+	print "    });
+ \n";
+	print "\$(\'#placeholder49-table tbody tr\').on(\'click\', \'td:nth-child(1)\', function (f) {
+ \n";
+	print "     var tr = \$(this).closest(\'tr\');
+\n";
+	print " var row = otable.row(tr);
+ \n";
+	print "\n var js_hash = { ";
+	foreach $queue (keys %queue_allowed_user) {
+		$counter=0;
+                 
+		$value="<b>Allowed Users/Group(s)</b>:"; 
+                $all_flag=0;
+                foreach $machine(split(" ",$queue_allowed_user{$queue})) {
+                        $all_flag=1;
+			$value .="$machine";
+			$value .=",";   
+			if($counter==10)
+			{
+				$value .="<BR>";
+				$counter=0; 
+			}
+			$counter++;
+
+		}
+                if($all_flag)
+                {
+                  
+
+                }
+               else
+               {
+                 	$value="<b>Allowed Users/Group(s)</b>: ALL"; 
+
+               }
+		print "\"$queue\":\"<b>Description :</b> $queue_desc{$queue} <br> $value\",";
+		$value="";
+	}
+	print "}; \n";
+	print "var  queue_name=\$( this ).next().text(); \n";
+	print "if(f.handled !== true) \n";
+	print " { \n";
+	print "  f.handled = true; \n";
+	print "}\n";
+	print "var cell=otable.cell( this ); \n";
+	print  "   if (row.child.isShown()) {
+ \n";
+	print "cell.data(\"<img src='../lib/DataTables/examples/resources/details_open.png'>\").draw(); \n";
+	print "     row.child.hide();
+ \n";
+	print "    tr.removeClass(\'shown\');
+ \n";
+	print "    } else {
+ \n";
+	print "cell.data(\"<img src='../lib/DataTables/examples/resources/details_close.png'>\").draw(); \n";
+	print "    row.child(js_hash[queue_name]).show();
+ \n";
+	print "        tr.addClass(\'shown\');
+ \n";
+	print "     }
+ \n";
+	print "  });
+ \n";
+	print "});";
+	print "</script>";
+
+}
+
+####Bload Table #####
+sub ShowBhappy {
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+        #print "*** $site_selected \n";
+	$DBH->do("USE rs_dashboard;");
+	my $stmt="select * from bhappy where site=\"$site_selected\" order by time desc";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not99 insert data";
+	if(my @columns = $sth->fetchrow_array())
+	{
+		$sql_time=$columns[0];
+
+	}
+	my $stmt = "select * from bhappy where time=$sql_time and site=\"$site_selected\";";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not insert data";
+	my $stmt="select from_unixtime(time),name from bhappy order by time desc";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not99 insert data";
+	if(my @columns = $sth->fetchrow_array())
+	{
+		$sql_new_time=$columns[0];
+
+	}
+	my $stmt = "select * from bhappy where time=$sql_time and site=\"$site_selected\";";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not insert data";
+
+	print "<script language=\"javascript\" type=\"text/javascript\"> \n"; 
+	print "\$(document).ready(function(){ \n";
+	print "var header = [\"Name\",\"Group\",\"Jobs<br>Running\",\"Job<br>Limit\",\"Run<br>Failures\",\"Queue Name\",\"Jobs<br>Pending\",\"Avg Time<br>Pending(minutes)\",\"Pending<br>Reasons\",\"\"];\n";
+
+ if($site_selected ne "bangalore")
+     {
+	print "var header = [\"Name\",\"Jobs<br>Running\",\"Job<br>Limit\",\"Run<br>Failures\",\"Queue Name\",\"Jobs<br>Pending\",\"Avg Time<br>Pending(minutes)\",\"Pending<br>Reasons\",\"\"];\n";
+
+}
+	print "var data = [ ";
+	%TABLE_DATA =();        
+	while (my @columns = $sth->fetchrow_array() ) {
+		my %TABLE_DATA =();        
+		for(my $i=0;$i<@columns;$i++) {
+			next if($i==0); 
+			if($i==2)
+			{
+				$total_pending_jobs += "$columns[$i]";	
+				$temp=$columns[2]; 
+				$columns[$i]=$columns[9];
+				#$columns[8]=$temp;	
+                                           	$TABLE_DATA{8}{'ENTRY'} =$temp;	
+				 if($site_selected ne "bangalore")
+                                 {
+                                    next;
+                                 }
+
+ 				
+			}
+                        if($i==5)
+			{
+				$temp=$columns[5]; 
+				#$columns[$i]=$columns[7];
+				$columns[9]=$temp;
+                                next;	
+			}
+
+
+			if($i==3)
+			{
+
+			}
+			if($i==8)
+			{
+				$columns[8]=~s/-//;
+				if($columns[8] eq "")
+				{
+					$pend_reason_hash{$columns[1]}="";
+
+				}
+				else
+				{
+
+					@temp=split(",",$columns[8]);
+					foreach $value (@temp)
+					{
+						@temp_1=split(":",$value);
+						$temp_1[0]=~s/\s+//;
+						@temp_2=split("",$temp_1[0]); 
+						foreach $value_1 (@temp_2)
+						{ 
+							$value_1=~s/\s+//;
+							if(exists $pend_desc{$value_1} )
+							{
+								$value_2=$pend_desc{$value_1};
+								$pend_reason_hash{$columns[1]} .="$value_1 : $value_2 <br>";
+
+							}
+						}
+
+					}
+
+				}
+                       $columns[10]=$columns[8];
+                       next;
+			} 
+
+			$TABLE_DATA{$i}{'align'} = 'center';		  
+			$TABLE_DATA{$i}{'ENTRY'} = "$columns[$i]";		
+		}
+
+		$TABLE_DATA{11}{'align'} = 'center';
+		$TABLE_DATA{11}{'ENTRY'} = "<img src='../lib/DataTables/examples/resources/details_open.png'>";	
+                if($site_selected ne "bangalore")
+                {
+                 #delete $TABLE_DATA{2}{'ENTRY'};
+	           # delete $TABLE_DATA{2}{'align'} ;			
+                }
+		&AddTableRow1(\%TABLE_DATA);		
+	}
+	print "];\n";
+	print "\n table(\"placeholder28\",data,{title:\"<BR><font size=20><b><center>RS User Status</center></b></font><BR>\",colTitles:header})\n";
+	print "  var otable = \$('#placeholder28-table').DataTable({ \n";
+	print " retrieve: true, \n";
+	print " responsive:true,\n";
+	print "    });
+ \n";
+	print "\$(\'#placeholder28-table tbody tr\').on(\'click\', \'td:nth-child(10)\', function (f) {
+ \n";
+	print "var tr = \$(this).closest(\'tr\');
+\n";
+	print " var row = otable.row(tr);
+ \n";
+	print "\n var js_hash = { ";
+	foreach $user (keys %pend_reason_hash) {
+		$counter=0;
+		$value="<b>Reasons</b>:<br>"; 
+		$value ="$pend_reason_hash{$user}";                      
+		print "\"$user\":\"$value\",";
+		$value="";
+	}
+	print "}; \n";
+	print "var  queue_name=\$( this ).parent().children(\"td:nth-child(1)\").text();\n";
+	print "if(f.handled !== true) \n";
+	print " { \n";
+	print "  f.handled = true; \n";
+	print "}\n";
+	print "var cell=otable.cell( this ); \n";
+	print  "   if (row.child.isShown()) {
+ \n";
+	print "cell.data(\"<img src='../lib/DataTables/examples/resources/details_open.png'>\").draw(); \n";
+	#print"row.child.remove();\n";	
+
+	#print "row.child.show();^M \n";
+	print "     row.child.hide();
+ \n";
+	print "    tr.removeClass(\'shown\');
+ \n";
+	print "    } else {
+ \n";
+	print "cell.data(\"<img src='../lib/DataTables/examples/resources/details_close.png'>\").draw(); \n";
+	print"row.child.remove();\n";		
+	#print "    row.child(js_hash[queue_name]).show();
+ \n";
+       # print"row.child(js_hash[queue_name]).dialog();^M \n";
+	print "        tr.addClass(\'shown\');
+ \n";
+	print "     }
+ \n";
+	print "  });
+ \n";
+	print "});";
+	print "</script>";
+
+}
+sub ShowBload {
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+
+	$DBH->do("USE rs_dashboard;");
+	my $stmt = "select * from bload where time=$sql_time and site=\"$site_selected\";";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not in9sert data";
+	print "<script language=\"javascript\" type=\"text/javascript\"> \n"; 
+	print "\$(document).ready(function(){ \n";
+	print "var header = [\"Machine Name\",\"Status\",\"Used/<br>\Max\",\"CPU Utils\",\"Paging Activity\",\"Disk Activity \",\"Available TMP Space(Gb)\",\"Space<br>(Gb)\",\"#<br>CPU's \",\"Machine speed(GHz)\",\"Available Mem(Gb)\",\"Cpu Steal\",\"Interactive\",\"Allowed <br>Group(s)\",\"Reserved Users\"];\n";
+ if($site_selected ne "bangalore")
+{
+	print "var header = [\"Machine Name\",\"Status\",\"Used/<br>\Max\",\"CPU Utils\",\"Paging Activity\",\"Disk Activity \",\"Available TMP Space(Gb)\",\"Space<br>(Gb)\",\"#<br>CPU's \",\"Machine speed(GHz)\",\"Available Mem(Gb)\",\"Allowed <br>Group(s)\",\"Reserved Users\"];\n";
+}
+	print "var data = [ ";
+	%TABLE_DATA =();        
+	while (my @columns = $sth->fetchrow_array() ) {
+		my %TABLE_DATA =();        
+		for(my $i=0;$i<@columns;$i++) {
+			next if($i==13); 
+				 if($site_selected ne "bangalore")
+                                 { 
+						if($i==12) 
+                                                 {
+
+                                                       next;
+                                                  }
+				}
+
+                                   
+
+			if($i==0)
+			{
+
+				#$TABLE_DATA{0}{'align'} = 'center';
+				#$TABLE_DATA{0}{'ENTRY'} = "<img src='../lib/DataTables/examples/resources/details_open.png'>";
+				next;
+
+			}
+			if($i==10||$i==11 || $i==8 ||$i==7)
+			{
+				if($columns[$i] !=0)
+				{
+
+					$columns[$i]=sprintf("%.2f",$columns[$i]/1024);
+
+				}
+
+			}
+			if($i==4)
+			{ 
+				$columns[$i]="$columns[$i] %";
+
+			} 
+			if($i==15)
+			{
+				$value="";
+				@temp_array=split(" ",$columns[13]);
+				$counter=0;
+				foreach $access_grp (@temp_array)
+				{
+
+					if($counter==3)
+					{
+						$value .= "<br>";
+						$counter=0;
+					} 
+					$value .= "$access_grp ";
+					$counter++;	
+				}
+				$columns[13]=$columns[15];
+				$columns[15]=$value;
+
+			}
+			if($i==14)
+			{
+				$counter=0; 
+				$value="";
+				@temp_array=split /\+/, $columns[$i];
+				$counter=0;
+				foreach $access_grp (@temp_array)
+				{
+
+					$value .= "$access_grp ";
+				}
+				$columns[$i]=$value;
+				$reserved_user{$columns[1]}=$value;
+				next;
+			}
+			$TABLE_DATA{$i}{'align'} = 'center';		  
+			$TABLE_DATA{$i}{'ENTRY'} = "$columns[$i]";		
+		}
+				 if($site_selected eq "bangalore")
+				{	
+		$TABLE_DATA{13}{'align'} = 'center';		  
+		$TABLE_DATA{13}{'ENTRY'} = "$columns[13]";
+               }
+                 
+                $TABLE_DATA{14}{'align'} = 'center';
+		$TABLE_DATA{14}{'ENTRY'} = $TABLE_DATA{15}{'ENTRY'};		    
+
+		$TABLE_DATA{15}{'ENTRY'} = "<img src='../lib/DataTables/examples/resources/details_open.png'>";		    
+		&AddTableRow1(\%TABLE_DATA);		
+	}
+	print "];\n";
+	print "\n table(\"placeholder26\",data,{title:\"<BR><font size=20><b>RS Machine Status</b></font><BR>\",colTitles:header})\n";
+	print "  var otable = \$('#placeholder26-table').DataTable({ \n";
+	print " retrieve: true, \n";
+	print "    });
+ \n";
+	print "\$(\'#placeholder26-table tbody tr\').on(\'click\', \'td:nth-child(15)\', function (f) {
+ \n";
+	print "     var tr = \$(this).closest(\'tr\');
+\n";
+	print " var row = otable.row(tr);
+ \n";
+	print "\n var js_hash = { ";
+	foreach $machine (keys %reserved_user) {
+		$counter=0;
+		$value="<b>Users</b>:"; 
+		foreach $users(split(" ",$reserved_user{$machine})) {
+			$value .="$users";
+			$value .=",";   
+			if($counter==20)
+			{
+				$value .="<BR>";
+				$counter=0; 
+			}
+			$counter++;
+
+		}
+		print "\"$machine\":\"$value\",";
+		$value="";
+	}
+	print "}; \n";
+	print "var  queue_name=\$( this ).parent().children(\"td:nth-child(1)\").text();\n";
+	print "if(f.handled !== true) \n";
+	print " { \n";
+	print "  f.handled = true; \n";
+	print "}\n";
+	print "var cell=otable.cell( this ); \n";
+	print  "   if (row.child.isShown()) {
+ \n";
+	print "cell.data(\"<img src='../lib/DataTables/examples/resources/details_open.png'>\").draw(); \n";
+  	print "     row.child.hide();
+ \n";
+	print "    tr.removeClass(\'shown\');
+ \n";
+	print "    } else {
+ \n";
+	print "cell.data(\"<img src='../lib/DataTables/examples/resources/details_close.png'>\").draw(); \n";
+	print "    row.child(js_hash[queue_name]).show();
+ \n";
+	print "        tr.addClass(\'shown\');
+ \n";
+	print "     }
+ \n";
+	print "  });
+ \n";
+=heaD
+print"var row=otable.row(this);\n";
+print"if(row.every.isShOwn()){^M\n";
+print"row.data(\"<img src='.../lib/DataTables/examples/resources/details_open.png'>\").draw();\n";
+print"row.child.hide();^M\n";
+print"tr.removeClass(\'shown\');^M\n";
+print"}else{^M\n";
+print"cell.data(\"<img src='../lib/DataTables/examples/resources/details_close.png'>\").draw();\n";
+print"row.child(js_hash[queue_name]).show();^M \n";
+print"tr.addClass(\'shown\');^M\n";
+print"}^M\n";
+print"});^M\n";
+=cut
+	print "});";
+	print "</script>";
+}
+
+####distribution of the pending and running jobs across features########
+sub pending_running_partition
+{
+
+	$DBH = &connect or die "Cannot connect to the sql server \n";
+
+	$DBH->do("USE rs_dashboard;");
+	my $stmt="select * from summary where site=\"$site_selected\" order by time desc";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not99 insert data";
+	if(my @columns = $sth->fetchrow_array())
+	{
+		$sql_time=$columns[0];
+
+	}
+
+	my $stmt = "select * from bqueues where time=$sql_time and site=\"$site_selected\";";
+	my $sth = $DBH->prepare( $stmt );
+	$sth->execute() or print "Could not insert data";
+	while (my @columns = $sth->fetchrow_array() ) {
+		if($columns[2] =~ /adice/i)
+		{
+			$pend_count{adice} +=$columns[4];
+			$run_count{adice} +=$columns[5]; 
+
+		}
+		elsif($columns[2] =~ /calibre/i)
+		{
+			$pend_count{calibre} +=$columns[4];
+			$run_count{calibre} +=$columns[5]; 
+
+		}   
+		elsif($columns[2] =~ /vcs/i)
+		{
+			$pend_count{vcs} +=$columns[4];
+			$run_count{vcs} +=$columns[5]; 
+
+		}     
+		elsif($columns[2] =~ /spectre/i)
+		{
+			$pend_count{spectre} +=$columns[4];  
+			$run_count{spectre} +=$columns[5]; 
+		}       
+		elsif($columns[2] =~ /Incisive/i)
+		{
+			$pend_count{incisive} +=$columns[4];
+			$run_count{incisive} +=$columns[5]; 
+		}     
+
+		else
+		{
+			$pend_count{others} +=$columns[4];
+			$run_count{others} +=$columns[5]; 
+
+		}
+	}
+
+}
+sub pend_reasons_desc {
+	$pend_desc{A}="Awaiting first dispatch cycle.";                                             
+	$pend_desc{a}="Your account is not valid on one or more hosts.";
+	$pend_desc{B}="No contact with a potential host.";
+	$pend_desc{b}="The specified job begin-time (bsub -b) has not been reached yet.";
+	$pend_desc{C}="A potential hosts resources appear desperately low.";
+	$pend_desc{c}="A potential host may be dedicated to a single job. See the section";
+	$pend_desc{D}="A potential host is reserved for its owner.";
+	$pend_desc{d}="An MT host has too few processors available.";
+	$pend_desc{E}="A potential host is closed to job placement.";
+	$pend_desc{e}="A potential host has too many processing units available";
+	$pend_desc{F}="A potential host has insufficient slots available.";
+	$pend_desc{f}="The job has failed the bsub -expect test one or more times.";
+	$pend_desc{G}="The job wants all slots bsub -x, but some are in use.";
+	$pend_desc{g}="User has reached the placed-state job limit (bsub -plim).";
+	$pend_desc{H}="The dependency expression for the job evaluated to FALSE.";
+	$pend_desc{h}="A host was excluded because the job has been classified as a long-runner.";
+	$pend_desc{I}="User has reached USER_JOB_LIMIT of queue.";
+	$pend_desc{i}="The host RS daemon has not synchronized (after startup) with";
+	$pend_desc{J}="The queue is inactive.";
+	$pend_desc{K}="The queue is waiting out the DISPATCH_DELAY.";
+	$pend_desc{L}="The job is on the lost&found queue (always inactive.)";
+	$pend_desc{l}="The required license(s) are not available.";
+	$pend_desc{M}="The jobs PRE_EXEC script returned 1 (No license ?)";
+	$pend_desc{N}="The user was restricted (Verdasys) from running on a host.";
+	$pend_desc{O}="The queue has reached its job slot limit.";
+	$pend_desc{P}="A potential host failed the jobs resource expression (bsub -R.)";
+	$pend_desc{Q}="A potential host was excluded by the system.";
+	$pend_desc{R}="This letter is not in use at this time";
+	$pend_desc{S}="A potential host was excluded because the user is not allowed";
+	$pend_desc{T}="A potential host was excluded because it was classified";
+	$pend_desc{t}="Job was migrated because the host was thrashing.";
+	$pend_desc{U}="User has reached job run limit (bsub -jlim).";
+	$pend_desc{V}="A potential host failed the queues resource expression.";
+	$pend_desc{W}="The jobs POST_EXEC script returned 1 (No license ?).";
+	$pend_desc{X}="A Linux/Intel(or AMD) host was excluded because you did not bsub -lintel";
+	$pend_desc{Y}="A host was excluded by bsub -m and/or HOSTS on the queue.";
+	$pend_desc{Z}="One or more hosts could not CD to the jobs working directory or one of";
+	$pend_desc{z}=" Job failed to start. Perhaps a bad user command,";
+
+
+
+}
+

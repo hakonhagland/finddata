@@ -1,0 +1,47 @@
+CONFIG checklist6 {
+DESCRIPTION:Formality Checklist - RTL vs DCT
+Did we start w/ SNPS RM flow. Give version number if any:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Is synopsys_auto_setup "true"? If not, any specific reason why? already present in the checklist?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are there any auto_setup variable that is being over-ridden?:RADIOBUTTON(Yes,No):Compulsory:No
+Value of "hdlin_unresolved_modules":TEXTBOX:Compulsory:Error
+For RTL vs DCT,Reference RTL:TEXTBOX:Compulsory:NO_CONFIRM
+Implementation Netlist:TEXTAREA:Compulsory:NO_CONFIRM
+Any local RTL files used?:RADIOBUTTON(Yes,No):Compulsory:No
+Any locally hacked libarary/db used? If yes, any specific reason why? already present in the checklist:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+All library dbs used_\@_ Give Path:TEXTAREA:Compulsory:USER_REPLY
+Are we using full netlists for the blocks that are ILMs.:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are we using latest netlists (full) for the blocks that are ILMs.:RADIOBUTTON(Yes,No):Compulsory:Yes
+Print the path for the netlists (full) being used for ILMs:TEXTAREA:Compulsory:NO_CONFIRM
+Any user defined black boxes/hdlin_interface blocks? If  yes, why?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+List  all hdlin_interface modules and justify:TEXTAREA:Compulsory:USER_REPLY
+Are the following defines being passed- PABSYS,DABSYS,SYN:RADIOBUTTON(Yes,No):Compulsory:Yes
+Apart from the above any user defines passed using -d (..)? If yes, give a list of the defines passed?:RADIOBUTTON(Yes,No):Compulsory:No
+Are svf files used?:RADIOBUTTON(Yes,No):Compulsory:Yes
+If yes, path of svf files - should match Synthesis output:TEXTAREA:Optional:USER_REPLY
+Any manual "guide" commands used?:RADIOBUTTON(Yes,No):Compulsory:No
+Any RTL elaboration warnings?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+List all RTL Elab warnings and justify waivers:FILE_FIELD:Compulsory:USER_REPLY
+Attach svf acceptance table:FILE_FIELD:Compulsory:USER_REPLY
+Are there mutiple drivers in RTL/netlist?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Attach Report of Multiple Drivers if any:FILE_FIELD:Compulsory:USER_REPLY
+Are there unread points in either netlist?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Attach report of Unread Points if any:TEXTAREA:Compulsory:USER_REPLY
+Any undriven nets in either RTL or netlist?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Attach report of Undriven nets if any:FILE_FIELD:Compulsory:USER_REPLY
+Matching Results_\@_ Unmatched Points?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+Attach Report of all unmatched points if any:FILE_FIELD:Compulsory:USER_REPLY
+ANY DFF only cells in unmatched points ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Attach report of all unmatched DFF only cells and JUSTIFY every cell:FILE_FIELD:Compulsory:USER_REPLY
+Any user matches?:RADIOBUTTON(yen,no):Compulsory:USER_REPLY
+List all user match commands if any, and justify:TEXTAREA:Compulsory:USER_REPLY
+Any "set_equivalences"?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+List all set_equivalence  commands if any, and justify:TEXTAREA:Compulsory:USER_REPLY
+Any "set_constant"?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+List all set_constant  commands if any, and justify:TEXTAREA:Compulsory:USER_REPLY
+Any "set_dont_verify" commands to skip verifcation?:RADIOBUTTON(yes,no):Compulsory:USER_REPLY
+List all set_dont_verify commands and justify:TEXTAREA:Compulsory:USER_REPLY
+Has verification passed cleanly? ("VERIFICATION SUCCEEDED"):RADIOBUTTON(Yes,No):Compulsory:Yes
+Attach Path of Formality "tee" log file:TEXTAREA:Compulsory:USER_REPLY
+Deliberate error check -- Does Formality fail when error is introduced deliberately in RTL/Netlist?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Have the logs been audited by another reviewer.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+}

@@ -1,0 +1,22 @@
+CONFIG checklist13 {
+DESCRIPTION:Power Analysis Checklist
+Version of Pt-PX used for Full chip power Analysis (FCPA):TEXTAREA:Compulsory:USER_REPLY
+2.	Confirm that Averaged analysis mode  in PT-PX is used for FCPA (unless STAR  9000446851 has been resolved):TEXTBOX:Compulsory:USER_REPLY
+3.	Confirm that MLCOM or equivalent Library Corner has been used for all libraries used in power analysis:TEXTBOX:Compulsory:USER_REPLY
+4.	Confirm that the gatelevel simulation used for FCPA is the simulation with SS sdf:TEXTBOX:Compulsory:USER_REPLY
+Confirm that the gatelevel simulation based on FF sdf has been taken through FCPA once and power numbers ensured to be lesser than SS-sdf based FCPA numbers:TEXTBOX:Compulsory:USER_REPLY
+Confirm that cworst parasitics have been taken for FCPA:TEXTBOX:Compulsory:USER_REPLY
+Confirm that Clock gate annotation has been ensured to be 100%:TEXTAREA:Compulsory:USER_REPLY
+Confirm that Sequential annotation has been ensured to be 100%. Else, justify.:TEXTAREA:Compulsory:USER_REPLY
+Confirm that a peak activity test-case has been run and results given for Static IR drop analysis:TEXTBOX:Compulsory:USER_REPLY
+Confirm that a scan-mode peak activity test-case has been run and given for Static IR drop Analysis:TEXTBOX:Compulsory:USER_REPLY
+Confirm that appropriate voltage scaling factors have been applied for both static and dynamic powers in full chip power tabulations:TEXTBOX:Compulsory:USER_REPLY
+Confirm that a proper use-case(including core activity and appropriate bandwidth requirements) has been run and the results tabulated:TEXTBOX:Compulsory:USER_REPLY
+Confirm that 20pF capacitive load has been used on chip pins:TEXTBOX:Compulsory:USER_REPLY
+Confirm that toggles on I/O pads has been set to be equal to the write toggles alone ie, read toggles have been excluded in switching power calculation:TEXTBOX:Compulsory:USER_REPLY
+Confirm that the I->PAD arc of I/O pads has been set to be equal to I toggles, if OE is active during all I toggles:TEXTBOX:Compulsory:USER_REPLY
+Confirm that hard-macro powers have either been included in lib/Manually added in the final power calculation sheet:TEXTAREA:Compulsory:USER_REPLY
+Confirm that for dual-rail output I/O pads, capacitive load has been applied for both rails:TEXTAREA:Compulsory:USER_REPLY
+Confirm that for I/O pads having ODT on board, separate power numbers have been calculated with and without ODT:TEXTAREA:Compulsory:USER_REPLY
+Confirm that the power analysis tests have been run at full speed in Gatelevel simulations and no scaling factor needs to be used:TEXTAREA:Compulsory:USER_REPLY
+}

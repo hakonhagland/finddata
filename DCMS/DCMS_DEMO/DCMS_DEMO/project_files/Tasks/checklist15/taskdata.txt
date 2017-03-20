@@ -1,0 +1,116 @@
+CONFIG checklist15 {
+DESCRIPTION:Timing Analysis Checklist
+Primetime version used:TEXTBOX:Compulsory:USER_REPLY
+Path of design netlist used for final signoff:TEXTBOX:Compulsory:USER_REPLY
+Path of SPEF used for final signoff:TEXTBOX:Compulsory:USER_REPLY
+RC back-annotation:COMMENT:Compulsory:USER_REPLY
+Confirm that a coupled-cap SPEF (and not grounded-cap ) is used in both SI and non-SI runs ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that _\&_a) the SPEF is generated from Star-RC and not ICC_\&_b) SPEF is generated from the layout database having Metal-fill and Redundant via.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Please confirm that there ALL internal pin-pin nets are completely back-annotated:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that all nets have detailed RC (and not lumped ) annotation.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Please confirm that ALL driverless nets are also load-less ( i.e fanin =0 and fanout=0 ):RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+confirm that ALL load-less nets are only connected to SPARE cells and not to dead logic:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are NO DES- or PARA- warnings during parasitic annotation ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Path of the RC-back-annotation report:TEXTBOX:Compulsory:USER_REPLY
+Operating conditions:COMMENT:Compulsory:USER_REPLY
+Have we obtained the recommended signoff corners from TSMC ? _\&_Please point to file path.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Does the device & parasitic corners used for final signoff cover TSMC recommendation ? List these corners.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that we have checked intermediate corners (0C , TT ) for possible non-linear behaviour in setup/hold ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm we have checked Low voltage corner ( 0.9V ) for 0 Hold violations ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that the SPEF files used for the parasitic corners correspond to correct Temperatures ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Libraries:COMMENT:Compulsory:USER_REPLY
+Confirm that the most recent versions of all libraries (vendor/internal) has been used for signoff ? List the version details:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Do the voltages and temperature of  COREVDD and IOVDD libraries (including custom macros) characterized at 5% margin to PTE/customer ? List the values.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Is there any  derate done to reflect a different  IOVDD/COREVDD than the characterized .lib value ? List details.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have CCS modelling been used for all COREVDD and IOVDD libraries (including custom macros ) ? List exceptions:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Please confirm that the max and min transition settings in libraries match exactly with the char range bounds ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Do the slew trip points and slew derates in the libraries result in 10-90 points for transition ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have the internally generated .lib files been reviewed for conformance ?_\&_* Missing arcs_\&_* Missing cap/max_trans_\&_* Matching cond and sdf_cond arcs_\&_* power_\&_* Voltage domains for pins_\&_* Min-pulse width for clock_\&_* input pins going to async set/reset internally:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are any .libs modified specifically for TA ? Why ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Timing Margins:COMMENT:Compulsory:USER_REPLY
+Confirm that OCV and uncertainty values are aligned with TSMC recommendation.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that PLL jitter is accounted into uncertainty value:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that derate on clock paths is compulsorily done for Hold ? Mention the % value.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that additional Hold uncertainty is used for custom macros, memories and inter-clock domains.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm extra uncertainty value used for Dummy-pad loopback with 0 load to account for spice mismatch with .lib ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Timing Targets & Constraints:COMMENT:Compulsory:USER_REPLY
+Point to the document which lists the clock frequency and AC-timing targets:TEXTAREA:Compulsory:NO_CONFIRM
+Confirm that AC-timing values have been signed off with Apps/PTE:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that additional timing margin is used in TA deck for  AC-timing values  datasheet to account for Tester and slew marginalities ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that every single AC timing parameter is validated in TA ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that every peripheral AC timing as per pin-mux is  covered in analysis decks ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that all types of modes (int/ext/clock ratios/tx/rx etc ) are covered in analysis decks ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Does the cap load on outputs reflect the ATE capload and package parasitics ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Does the input transition reflect the slew rate used on ATE ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that I/O Timing is analyzed at both IOVDD=3.3 and 1.8V ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Timing checks:COMMENT:Compulsory:USER_REPLY
+Confirm that the tool flow & variable settings is aligned with the Reference methodology recommendation ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that timing reports are analyzed with and without crosstalk delay effects ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that Tool calculates delays/transition based on parasitics only and No set_annotated_delay or set_annotated_transition is done internal to the design ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that all warnings & messages are visible in the log file and not suppressed.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Please confirm that all the clocks are propagated and not ideal:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have the clock tree latency histograms been analyzed for possible outliers ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Is check_timing report clean with No violations and everything constrained ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that check_timing reports no loops inside any logic including spares:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are zero PTE-003 warnings due to breaking of arcs for combi loops ? Point to waiver:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Is check_timing report clean with No violations for cells connecting to the correct voltage rails ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are zero RC-011 warnings for extrapolation beyond char range in any corner ? Explain waiver:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are zero RC-004 warnings for failure to compute c-effective ? Point to waiver.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are zero RC-009 warnings for drive resistance issues ? Explain waiver:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are zero DEL-008 warnings for inconsistent library settings ? Explain waiver:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are clock gating checks enabled ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm there are zero PTE-060 warnings for missing clock_gating checks on some elements ? Point to waiver.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that No clock gating checks are missed due to the clock not being consumed in the fanout of the gating cell ( due to a new create_clock declaration downstream or similar constraint  ) ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that there are no set_max_delay commands that result in breaking of arcs incorrectly and No TIM-175 Violations in log  ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have the Multi-cycle & False paths been reviewed thoroughly and validated with designers/simulations ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Is the reset recovery and removal check enabled ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are the paths traversing through asynchronous set/clear pins of flops analyzed by specifically setting the variable "timing_enable_preset_clear_arcs" ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that case analysis is removed when analyzing for max trans violations:TEXTAREA:Compulsory:USER_REPLY
+Has max transition been checked for all nets > 2000 u length ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Please point to the waiver algorithm for the max_trans violations.:TEXTAREA:Compulsory:NO_CONFIRM
+Is the final timing slack reporting done using the path-based-analysis option ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Location of timing reports across all corners and modes:TEXTBOX:Compulsory:USER_REPLY
+Location of max_trans reports across all corners  and waiver file:TEXTBOX:Compulsory:USER_REPLY
+Location of clock tree info -  insertion delay and clock skew reports across corners:TEXTBOX:Compulsory:USER_REPLY
+Location of the internal transmit clock duty-cycle check reports for all peripherals:TEXTBOX:Compulsory:USER_REPLY
+*Location of all Run log files:TEXTAREA:Compulsory:NO_CONFIRM
+Please confirm there are no floating inputs in the design (checked by script in Primetime) ? Point to path of report:TEXTAREA:Compulsory:USER_REPLY
+Confirm that there are no HVT cells in the clock network of all clocks ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have we checked that input pins of hard macros which are used as async set/reset internally are driven out of flops ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Has any specific paths been analyzed for ATE-only operation in PTE Timing deck ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have delay-balancing for I/O paths to ensure consistent AC-timing been checked specifically in PTE deck ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Scan mode Timing check:COMMENT:Compulsory:USER_REPLY
+Confirm that Scan Shift Mode constraints are signed off ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Clock Waveforms used in Scan Shift Mode – Is it signed off for 33 ns (without any uncertainty)?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that there are No timing exceptions (multicycles/ false paths) present in Scan Shift Mode?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that Stuck-At Capture Mode constraints signed off ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that At-speed Capture Mode constraints signed off?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that At-speed capture clock waveforms used same as functional frequencies?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that Timing for clock  gating cells inside OCC_TOP are  checked ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Crosstalk Noise:COMMENT:Compulsory:USER_REPLY
+Is the crosstalk noise analysis done for VIH/VIL only ? ( and not for overshoot/ undershoot ):RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that the required noise margin on all cells is Correlated with SPICE ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that check_noise report is clean by using user noise modelling as applicable ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that CCS noise libs are used for standard cells and memories ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that nets connected to TIE-cells are also analyzed for noise?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that Voltage levels of nets belonging to different domains have been preserved in noise calculation ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that IOVDD nets are analyzed at noise margin related to IOVDD levels ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that Noise is analyzed for all conditions _\@__\&_@source with no propagation , @endpoint with propagation , Finite/Infinite window ?_\&_:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Location of Noise reports _\@_:TEXTAREA:Compulsory:NO_CONFIRM
+SDF generation for gatesim:COMMENT:Compulsory:USER_REPLY
+Confirm that PT and not PT-SI is used to dump the SDF files ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+What Design PVT / Parasitic corners do the SS and FF SDF correspond to ?:TEXTAREA:Compulsory:USER_REPLY
+Confirm that  output cap load values of 30pF/5pF and input transition of 1ns are used for slow/fast SDF generation ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that in sdf generation script _\@_ _\&_* No case analysis is done _\&_* No set_disable_timing is done _\&_* create_clock, set_clock_transition & propagated_clock are used:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Confirm that a few sample path and clk tree delays as observed in gate level sim dumps fall between -min & -max of PT reports:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Audit:COMMENT:Compulsory:USER_REPLY
+Has the following been audited by a second person:COMMENT:Compulsory:USER_REPLY
+Run Scripts:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+False paths and Multicycle paths:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Pin ac timing constraints:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Report files:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are all warnings understood:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are all the suppress warnings understood:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have we checked that none of the .libs/.tcls are being picked up from pwa/home dirs:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Name of the auditor(s):TEXTAREA:Compulsory:USER_REPLY
+}

@@ -1,0 +1,393 @@
+CONFIG checklist12 {
+DESCRIPTION:Overall Functional Verification Checklist
+Test:CHECKBOX(1,2,3,4):Compulsory:3
+1. Has every word of the latest version of system level specification document been captured in the testplan ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+2. Has all the Block level DV checklist been completed ?:COMMENT:Compulsory:USER_REPLY
+Mention config used for sign off against each item:COMMENT:Compulsory:USER_REPLY
+Check that this config has the final rtl:COMMENT::
+ACM Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+CLKOUT Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+CRC Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+DDE Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+DDR Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPPI Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPWM Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+GPIO Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+L2 Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+LP Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PIXC Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINMUX Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-ACU Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-CNV Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-IIM Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-PEC Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-PMA Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-THC Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP-UDS Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+RSI Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+SMC Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+SPI Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+SPMUX Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+SP Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+System Level Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+UART Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+VSS Block Level Checklist:RADIOBUTTON(Yes,No):Compulsory:Yes
+3. Checks for Blocks without a Block level checklist ?:COMMENT:Compulsory:USER_REPLY
+3.1. IFR Blocks:COMMENT:Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for TRU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for SEC/FMU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for SWU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for RCU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for DPM:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for SPU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for CGU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for SDU:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for Fabric:RADIOBUTTON(Yes,No):Compulsory:Yes
+3.2. Others:COMMENT:Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for EMAC:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for USB (MAC):RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for USB (PHY):RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for USB PLL:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for SYS OSC:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the toggle coverage 100% on module boundary for DDR PHY:RADIOBUTTON(Yes,No):Compulsory:Yes
+3.3. Reuse Blocks:COMMENT:Compulsory:USER_REPLY
+3.3.1. CAN:COMMENT:Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for CAN:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Has all the legacy CAN tests been converted ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Total tests in original legacy CAN regression list:TEXTBOX:Compulsory:USER_REPLY
+Total tests in Devonshire regression CAN list:TEXTBOX:Compulsory:USER_REPLY
+List of unconverted CAN tests ?:TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting the above CAN tests:TEXTBOX:Compulsory:USER_REPLY
+3.3.2. I2C:COMMENT:Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for I2C:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all the legacy I2C tests been converted ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Total tests in original legacy I2C regression list:TEXTBOX:Compulsory:USER_REPLY
+Total tests in Devonshire regression I2C list:TEXTBOX:Compulsory:USER_REPLY
+List of unconverted I2C tests ?:TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting the above I2C tests:TEXTBOX:Compulsory:USER_REPLY
+3.3.3. Rotary:COMMENT:Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for Rotary:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all the legacy Rotary tests been converted ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Total tests in original legacy Rotary regression list:TEXTBOX:Compulsory:USER_REPLY
+Total tests in Devonshire regression Rotary list:TEXTBOX:Compulsory:USER_REPLY
+List of unconverted Rotary tests ?:TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting the above Rotary tests:TEXTBOX:Compulsory:USER_REPLY
+3.3.4. Efuse:COMMENT:Compulsory:USER_REPLY
+Is the toggle coverage 100% on module boundary for Efuse:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all the legacy (SHARC/Moy) Efuse tests been converted ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Total tests in original legacy Efuse regression list:TEXTBOX:Compulsory:USER_REPLY
+Total tests in Devonshire regression Efuse list:TEXTBOX:Compulsory:USER_REPLY
+List of unconverted Efuse tests ?:TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting the above Efuse tests:TEXTBOX:Compulsory:USER_REPLY
+Any design changes in efuse compared to SHARC/Moy ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are there new efuse tests written (or existing tests modified) for this ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+4. Has the following functionalities verified ?:COMMENT:Compulsory:USER_REPLY
+4.1. Process Monitor:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.2. Thermal Diode:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.3. OCC:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.4. Strap Logic:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.5. MBIST:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.6. Glue Logic _\@_:COMMENT:Compulsory:USER_REPLY
+Rotary/RSI/CAN APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+LP/Timer/CRC/I2C APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+UART APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+GPIO APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+WDT APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPPI APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPWM APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+SPORT/SPI APB Muxing:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.7. PAB SYS:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.8. EMAC Clock Dividers:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.9. USB PLL running on sysosc output:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.10. BOOT ROM CODE:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.11. Power Domain Testing _\@_:COMMENT:Compulsory:USER_REPLY
+Domain off with vdd_rdy:RADIOBUTTON(Yes,No):Compulsory:Yes
+Hibernate Wakeup:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.12. JTAG _\@_:COMMENT:Compulsory:USER_REPLY
+Boundary Scan:RADIOBUTTON(Yes,No):Compulsory:Yes
+USB Special Scan Cells:RADIOBUTTON(Yes,No):Compulsory:Yes
+DDR Special Scan Cells:RADIOBUTTON(Yes,No):Compulsory:Yes
+DS/SE Special Scan Cells:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.13. PAD Functionality Testing _\@_:COMMENT:Compulsory:USER_REPLY
+DS/SE Changes:RADIOBUTTON(Yes,No):Compulsory:Yes
+Pull Up/Dn:RADIOBUTTON(Yes,No):Compulsory:Yes
+Keeper Checks:RADIOBUTTON(Yes,No):Compulsory:Yes
+Reset State Checks:RADIOBUTTON(Yes,No):Compulsory:Yes
+Hibernate State Checks:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.14. TEST Mode Func and Features _\@_:COMMENT:Compulsory:USER_REPLY
+Test for No PLL_IRES (USB clock has to be aligned even after soft reset):RADIOBUTTON(Yes,No):Compulsory:Yes
+Test for quickboot:RADIOBUTTON(Yes,No):Compulsory:Yes
+4.15. System Oscillator:COMMENT:Compulsory:USER_REPLY
+System Oscillator Checks:RADIOBUTTON(Yes,No):Compulsory:Yes
+5. Are there tests present at full chip for the various instances of blocks?:COMMENT:Compulsory:USER_REPLY
+Core0:RADIOBUTTON(Yes,No):Compulsory:Yes
+Core1:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPWM0:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPWM1:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR0:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR1:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR2:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR3:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR4:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR5:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR6:RADIOBUTTON(Yes,No):Compulsory:Yes
+TMR7:RADIOBUTTON(Yes,No):Compulsory:Yes
+CAN:RADIOBUTTON(Yes,No):Compulsory:Yes
+TWI0:RADIOBUTTON(Yes,No):Compulsory:Yes
+TWI1:RADIOBUTTON(Yes,No):Compulsory:Yes
+WDT0:RADIOBUTTON(Yes,No):Compulsory:Yes
+WDT1:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPPI0:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPPI1:RADIOBUTTON(Yes,No):Compulsory:Yes
+EPPI2:RADIOBUTTON(Yes,No):Compulsory:Yes
+EMAC0:RADIOBUTTON(Yes,No):Compulsory:Yes
+EMAC1:RADIOBUTTON(Yes,No):Compulsory:Yes
+SP0 (HSA):RADIOBUTTON(Yes,No):Compulsory:Yes
+SP0 (HSB):RADIOBUTTON(Yes,No):Compulsory:Yes
+SP1 (HSA):RADIOBUTTON(Yes,No):Compulsory:Yes
+SP1 (HSB):RADIOBUTTON(Yes,No):Compulsory:Yes
+SP2 (HSA):RADIOBUTTON(Yes,No):Compulsory:Yes
+SP2 (HSB):RADIOBUTTON(Yes,No):Compulsory:Yes
+SPI0:RADIOBUTTON(Yes,No):Compulsory:Yes
+SPI1:RADIOBUTTON(Yes,No):Compulsory:Yes
+LP0:RADIOBUTTON(Yes,No):Compulsory:Yes
+LP1:RADIOBUTTON(Yes,No):Compulsory:Yes
+LP2:RADIOBUTTON(Yes,No):Compulsory:Yes
+LP3:RADIOBUTTON(Yes,No):Compulsory:Yes
+UART0:RADIOBUTTON(Yes,No):Compulsory:Yes
+UART1:RADIOBUTTON(Yes,No):Compulsory:Yes
+CRC0:RADIOBUTTON(Yes,No):Compulsory:Yes
+CRC1:RADIOBUTTON(Yes,No):Compulsory:Yes
+RSI:RADIOBUTTON(Yes,No):Compulsory:Yes
+Rotary:RADIOBUTTON(Yes,No):Compulsory:Yes
+PIXC:RADIOBUTTON(Yes,No):Compulsory:Yes
+PVP:RADIOBUTTON(Yes,No):Compulsory:Yes
+VSS:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTA:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTB:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTC:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTD:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTE:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTF:RADIOBUTTON(Yes,No):Compulsory:Yes
+PORTG:RADIOBUTTON(Yes,No):Compulsory:Yes
+PADS:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT0:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT1:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT2:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT3:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT4:RADIOBUTTON(Yes,No):Compulsory:Yes
+PINT5:RADIOBUTTON(Yes,No):Compulsory:Yes
+SMC:RADIOBUTTON(Yes,No):Compulsory:Yes
+SDU:RADIOBUTTON(Yes,No):Compulsory:Yes
+ACM:RADIOBUTTON(Yes,No):Compulsory:Yes
+DDR2:RADIOBUTTON(Yes,No):Compulsory:Yes
+L2:RADIOBUTTON(Yes,No):Compulsory:Yes
+SEC:RADIOBUTTON(Yes,No):Compulsory:Yes
+TRU:RADIOBUTTON(Yes,No):Compulsory:Yes
+RCU:RADIOBUTTON(Yes,No):Compulsory:Yes
+SPU:RADIOBUTTON(Yes,No):Compulsory:Yes
+PCU(PLL-Dig):RADIOBUTTON(Yes,No):Compulsory:Yes
+DPM:RADIOBUTTON(Yes,No):Compulsory:Yes
+EFUSE:RADIOBUTTON(Yes,No):Compulsory:Yes
+USB:RADIOBUTTON(Yes,No):Compulsory:Yes
+MDMA0:RADIOBUTTON(Yes,No):Compulsory:Yes
+MDMA1:RADIOBUTTON(Yes,No):Compulsory:Yes
+MDMA2:RADIOBUTTON(Yes,No):Compulsory:Yes
+MDMA3:RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU0 (SMC):RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU1 (L2_S):RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU2 (L2_C):RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU3 (Core 0):RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU4 (Core 1):RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU5 (SMMR):RADIOBUTTON(Yes,No):Compulsory:Yes
+SWU6 (DDR):RADIOBUTTON(Yes,No):Compulsory:Yes
+6. Are full chip dsp tests present for the following functionality?:COMMENT:Compulsory:USER_REPLY
+Various Clock Ratios:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB0 Main Fabric Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB1 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB2 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB3 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB4 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB5 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB6 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB7 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB8 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB9 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB10 Core0/1 Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+SCB11 System MMR Arbitartion Crossbar:RADIOBUTTON(Yes,No):Compulsory:Yes
+Test for all instances of DDE:RADIOBUTTON(Yes,No):Compulsory:Yes
+7. Issue Manager closure?:COMMENT:Compulsory:USER_REPLY
+Has all the DV issues closed ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Any exceptions, and reasons for the same:TEXTBOX:Compulsory:USER_REPLY
+8. Test Plan Reviews:COMMENT:Compulsory:USER_REPLY
+Are all test plans and action items from test plan review complete ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+9. IP hand-off verified:COMMENT:Compulsory:USER_REPLY
+9.1. EFUSE:COMMENT:Compulsory:USER_REPLY
+Is the efuse verilog model the latest ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is there any edits made to efuse verilog model ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Details of efuse model changes made if any:TEXTBOX:Compulsory:USER_REPLY
+9.2. Boot ROM:COMMENT:Compulsory:USER_REPLY
+Is the Boot ROM present in the config the latest ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the Boot ROM been sent back to Boot ROM team to confirm that it is latest ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all the Boot ROM tests been rerun on the final Boot ROM?:RADIOBUTTON(Yes,No):Compulsory:Yes
+9.3. Memories/RF:COMMENT:Compulsory:USER_REPLY
+Are all the Memory/RF verilog models used in L2, Peripherals the latest ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is there any edits made to Memory/RF verilog model ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Details of memeory/RF model changes made if any:TEXTBOX:Compulsory:USER_REPLY
+10. Test Plan documentation :COMMENT:Compulsory:USER_REPLY
+Path to testplans :TEXTBOX:Compulsory:USER_REPLY
+11. Test Conversions:COMMENT:Compulsory:USER_REPLY
+11.1 Core tests :COMMENT:Compulsory:USER_REPLY
+Total applicable TetonLite Core tests ?:TEXTBOX:Compulsory:USER_REPLY
+List of non-converted core tests :TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting those core tests ?:TEXTBOX:Compulsory:USER_REPLY
+11.2 Emulation Tests :COMMENT:Compulsory:USER_REPLY
+Total applicable TetonLite Emulation tests ?:TEXTBOX:Compulsory:USER_REPLY
+List of non-converted emulation tests :TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting those emulation tests ?:TEXTBOX:Compulsory:USER_REPLY
+11.3 WDT tests :COMMENT:Compulsory:USER_REPLY
+Total applicable TetonLite WDT tests ?:TEXTBOX:Compulsory:USER_REPLY
+List of non-converted WDT tests :TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting those WDT tests ?:TEXTBOX:Compulsory:USER_REPLY
+11.4 RSI :COMMENT:Compulsory:USER_REPLY
+Total RSI tests in original legacy regression list :TEXTBOX:Compulsory:USER_REPLY
+Total RSI tests in Devonshire regression list :TEXTBOX:Compulsory:USER_REPLY
+List of unconverted RSI tests ?:TEXTBOX:Compulsory:USER_REPLY
+Reasons for not converting those RSI tests ?:TEXTBOX:Compulsory:USER_REPLY
+12. Regression Results:COMMENT:Compulsory:USER_REPLY
+12.1. RTL Regression on tapeout Config:COMMENT:Compulsory:USER_REPLY
+Total tests in rtl regression list:TEXTAREA:Compulsory:USER_REPLY
+Total passing tests in rtl regression list:TEXTAREA:Compulsory:USER_REPLY
+Total failing tests in rtl regression list:TEXTAREA:Compulsory:USER_REPLY
+RTL Failures waived off if any:TEXTAREA:Compulsory:USER_REPLY
+Regression results/log files of the rtl regression can be found at:TEXTAREA:Compulsory:USER_REPLY
+Was the ncvlog file (rtl Compile) checked for warnings/errors?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Details of the rtl compile warnings/errors?:TEXTAREA:Compulsory:USER_REPLY
+12.2. SS Gatelevel Regression results:COMMENT:Compulsory:USER_REPLY
+Total tests in SS gatelevel regression list:TEXTAREA:Compulsory:USER_REPLY
+Total passing tests in SS:TEXTAREA:Compulsory:USER_REPLY
+Total failing tests in SS:TEXTAREA:Compulsory:USER_REPLY
+SS Failures waived off if any:TEXTAREA:Compulsory:USER_REPLY
+Regression results/log files of the SS regression can be found at:TEXTAREA:Compulsory:USER_REPLY
+Was the ncvlog file (SS Compile) checked for warnings/errors?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Details of the SS compile warnings/errors?:TEXTAREA:Compulsory:USER_REPLY
+Are all the files used in SS gatelevel simulations same as in the final tapeout integration?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY 
+Any exceptions to the above for SS gatelevel runs :TEXTAREA:Compulsory:USER_REPLY
+Does SS gatelevel compile pick any rtl files from design folders ?:RADIOBUTTON(Yes,No):Compulsory:No
+Confirm that all components used in SS gate-level simulations are gate-level (except for specific behavior models):RADIOBUTTON(Yes,No):Compulsory:Yes
+List all behavior models/rtl's used if any SS gatelevel if any ?:TEXTAREA:Compulsory:USER_REPLY
+Has an SS Waveform comparison been made to visually confirm that timing on selected path is reflective of operating conditions (and that SDFs are being back-annotated correctly.) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the transport delay been turned on with pulse rejection and error limit 0 for SS runs?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has 100PS Hold Uncertainty used in all SS runs:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all tests been run at speed in SS :RADIOBUTTON(Yes,No):Compulsory:Yes
+Have all timing warnings in the SS logfiles been analyzed ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of all SS 'setup/hold' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of all SS 'Charge Decay' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of all SS 'Bus Conflict' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of all SS 'in/inb checks' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of SS Netlist files :TEXTAREA:Compulsory:USER_REPLY
+Path of SS SDF :TEXTAREA:Compulsory:USER_REPLY
+Path of SS Libs :TEXTAREA:Compulsory:USER_REPLY
+Was there any Hacks made in SS sdf?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Details of hacks made in SS SDF if any :TEXTAREA:Compulsory:USER_REPLY
+Has the design formally approved this SS hacks ? (Post the issue manager link for this):RADIOBUTTON(Yes,No):Compulsory:Yes
+Was there any hacks made in SS netlist?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Details of hacks made in SS netlist if any :TEXTAREA:Compulsory:USER_REPLY
+Has the design formally approved this SS netlist hacks ? (Post the issue manager link for this):RADIOBUTTON(Yes,No):Compulsory:Yes
+12.3. FF Gatelevel Regression results:COMMENT:Compulsory:USER_REPLY
+Total tests in FF gatelevel regression list:TEXTAREA:Compulsory:USER_REPLY
+Total passing tests in FF:TEXTAREA:Compulsory:USER_REPLY
+Total failing tests in FF:TEXTAREA:Compulsory:USER_REPLY
+FF Failures waived off if any:TEXTAREA:Compulsory:USER_REPLY
+Regression results/log files of the FF regression can be found at:TEXTAREA:Compulsory:USER_REPLY
+Was the ncvlog file (FF Compile) checked for warnings/errors?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Details of the FF compile warnings/errors?:TEXTAREA:Compulsory:USER_REPLY
+Are all the files used in FF gatelevel simulations same as in the final tapeout integration?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY 
+Any exceptions to the above for FF gatelevel runs :TEXTAREA:Compulsory:USER_REPLY
+Does FF gatelevel compile pick any rtl files from design folders ?:RADIOBUTTON(Yes,No):Compulsory:No
+Confirm that all components used in FF gate-level simulations are gate-level (except for specific behavior models):RADIOBUTTON(Yes,No):Compulsory:Yes
+List all behavior models/rtl's used if any FF gatelevel if any ?:TEXTAREA:Compulsory:USER_REPLY
+Has an FF Waveform comparison been made to visually confirm that timing on selected path is reflective of operating conditions (and that SDFs are being back-annotated correctly.) ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the transport delay been turned on with pulse rejection and error limit 0 for FF runs?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has 100PS Hold Uncertainty used in all FF runs:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all tests been run at speed in FF :RADIOBUTTON(Yes,No):Compulsory:Yes
+Have all timing warnings in the FF logfiles been analyzed ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path of all FF 'setup/hold' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of all FF 'Charge Decay' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of all FF 'Bus Conflict' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of all FF 'in/inb checks' warnings analysed report files :TEXTAREA:Compulsory:USER_REPLY
+Path of FF Netlist files :TEXTAREA:Compulsory:USER_REPLY
+Path of FF SDF :TEXTAREA:Compulsory:USER_REPLY
+Path of FF Libs :TEXTAREA:Compulsory:USER_REPLY
+Was there any Hacks made in FF sdf?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Details of hacks made in FF SDF if any :TEXTAREA:Compulsory:USER_REPLY
+Has the design formally approved this FF hacks ? (Post the issue manager link for this):RADIOBUTTON(Yes,No):Compulsory:Yes
+Was there any hacks made in FF netlist?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Details of hacks made in FF netlist if any :TEXTAREA:Compulsory:USER_REPLY
+Has the design formally approved this FF netlist hacks ? (Post the issue manager link for this):RADIOBUTTON(Yes,No):Compulsory:Yes
+13. Gate level Simulation Checks:COMMENT:Compulsory:USER_REPLY
+Has the Gatelevel reset related checks done in SS ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the Gatelevel reset related checks done in FF ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has Gatelevel synchroniser checks (no glitch on D) done in SS ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has Gatelevel synchroniser checks (no glitch on D) done in FF ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the Synchroniser randomisation done  in SS runs?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the Synchroniser randomisation done  in FF runs?:RADIOBUTTON(Yes,No):Compulsory:Yes
+14. Boot ROM tests:COMMENT:Compulsory:USER_REPLY
+Where is the ROM code picked up from for simulations?:TEXTBOX:Compulsory:USER_REPLY
+Has the Boot ROM tests been run on final Boot rom code:RADIOBUTTON(Yes,No):Compulsory:Yes
+15. Low Power Simulations :COMMENT:Compulsory:USER_REPLY
+Has lowpower simulations been run on the final rtl:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has lowpower simulations been run on the final netlist:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all the warnings/errors in the low power test run logs analysed ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Print the path to the above report with all warnings/errors explained:TEXTBOX:Compulsory:USER_REPLY
+Low Power Sims Run Directory:TEXTBOX:Compulsory:USER_REPLY
+16. Assertion Coverage Results:COMMENT:Compulsory:USER_REPLY
+Assertion Status:TEXTBOX:Compulsory:USER_REPLY
+Assertion Test Plan:TEXTBOX:Compulsory:USER_REPLY
+Assertion Files at:TEXTBOX:Compulsory:USER_REPLY
+Assertion Coverage reports:TEXTBOX:Compulsory:USER_REPLY
+17. Full chip Code Coverage Results:COMMENT:Compulsory:USER_REPLY
+Full Chip Code Coverage Status(excluding core, analog blocks, memories):TEXTBOX:Compulsory:USER_REPLY
+Explanation for not covered code at:TEXTBOX:Compulsory:USER_REPLY
+Report of Code Coverage at:TEXTBOX:Compulsory:USER_REPLY
+Block Level Code Coverage paths:TEXTBOX:Compulsory:USER_REPLY
+18. Functional Coverage Results:COMMENT:Compulsory:USER_REPLY
+Path of the reports:TEXTAREA:Compulsory:USER_REPLY
+19. Cycle Information from RTG:COMMENT:Compulsory:USER_REPLY
+Details of the Cycle coverage at:TEXTBOX:Compulsory:USER_REPLY
+20. Formal Verification (Functionality checking) for specific assertions?:COMMENT:Compulsory:USER_REPLY
+Identified assertions Formally verified ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Details of Proven, No of Cycles proved:TEXTBOX:Compulsory:USER_REPLY
+Location of reports:TEXTBOX:Compulsory:USER_REPLY
+21. CHIPID/DSPID:COMMENT:Compulsory:USER_REPLY
+Has the chip id and dsp id been approved by Apps/PE?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the contents CHIPID and DSPID registers were verified ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Print the name of at least one test that verifies the above:TEXTBOX:Compulsory:USER_REPLY
+22. BSDL Verification:COMMENT:Compulsory:USER_REPLY
+Has the BSDL generated been approved by PTE ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the TEST pin and other private functionalities removed from the BSDL file?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the BSDL been verified using JTV on final database?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Print the path to bsdl file and verification directories :TEXTBOX:Compulsory:USER_REPLY
+23. MMR Verification:COMMENT:Compulsory:USER_REPLY
+Has bit bash tests been run on all MMR's ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all registers been checked with  one-hot writes ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+24. Real System Verification:COMMENT:Compulsory:USER_REPLY
+Is there at least one simulation case with real system environment for power-up behavior out of reset condition (with PLL netlist and without any simulation mode short-cut)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Print the name of the test:TEXTBOX:Compulsory:USER_REPLY
+Has the test been run in SS without any simulation short-cuts ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the test been run in FF without any simulation short-cuts ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+25. Tools Required & versions used :COMMENT:Compulsory:USER_REPLY
+Print the tool, Version used, Feature Set Needed of the tool, Total licenses available, and what it was used for _\@_ :COMMENT:Compulsory:USER_REPLY
+VCS:TEXTBOX:Compulsory:USER_REPLY 
+DesignWare-AMBA-VIP:TEXTBOX:Compulsory:USER_REPLY
+ncsim:TEXTBOX:Compulsory:USER_REPLY   
+Denali:TEXTBOX:Compulsory:USER_REPLY  
+JTV:TEXTBOX:Compulsory:USER_REPLY	  
+simvision:TEXTBOX:Compulsory:USER_REPLY
+dve:TEXTBOX:Compulsory:USER_REPLY 
+System OS:TEXTBOX:Compulsory:USER_REPLY
+}

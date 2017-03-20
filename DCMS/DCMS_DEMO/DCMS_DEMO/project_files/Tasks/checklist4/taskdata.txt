@@ -1,0 +1,44 @@
+CONFIG checklist4 {
+DESCRIPTION:DFT Checklist
+No dft_drc violations preventing scan:radiobutton(Yes,No):Compulsory:Yes
+All flops should be on scan chain; compare this with flop count reported by  DC:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+All test models shouls be used and accepted by DFTC:radiobutton(Yes,No):Compulsory:Yes
+Coverage > 98% (SA) and > 80% (TD):RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+All patterns passing (zero delay as well as with sdf) for both SS and FF:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Are there any Design Nodes that are being driven using FORCE statements:RADIOBUTTON(Yes,No):Compulsory:No
+CDN/SDN check - This is to ensure that both CDN and SDN don't get the same value during scan. This may potentially cause TetraMax issues. So run the script to check whether set-reset flops have their CDN and SDN tied to the opposite values in Scanmode:radiobutton(Yes,No):Compulsory:Yes
+Has an assertion been added in Scan Sims to check for Set and Clr to be mutually exclusive:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have assertions been added to check for PSU outputs during scan simulations?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Scan clock gating in occ - This has to be done to ensure that the CP pins of the clock chain registers are clock gated using the SE. We are not explicitly instantiating clock gates. So we have to manually check that these are clock gated by the tool, so that any functional waveform coming on ADDR[1] does not toggle the CP pins of clock chain registers:radiobutton(Yes,No):Compulsory:Yes
+Print (or give path) the SA and TD Fault Summary (both Collapsed and Un-collapsed):TEXTAREA:Compulsory:USER_REPLY
+Are ND and AU faults that are not covered been reviewed and justified. Give path for the justification file:TEXTAREA:Compulsory:USER_REPLY
+Remove power pins while running tetramax(this is because power pins cannot be used for pattern generation):radiobutton(Yes,No):Compulsory:Yes
+Are we mixing the clock edges in the scan chain. Give details of options used during scan stitching.:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Check the fanout of two scan enables. One should go to TE of clock gates and other one to all flops:radiobutton(Yes,No):Compulsory:Yes
+Core clocks should be off in scan mode and xcore flops should be forced to reset:radiobutton(Yes,No):Compulsory:Yes
+Print the list of Black boxes in the design.:TEXTAREA:Compulsory:USER_REPLY
+All black boxes (ddr2dll, usbphy) should be in reset in scan mode:radiobutton(Yes,No):Compulsory:Yes
+Set_dont_touch on scan in/out  and compress enable nets:radiobutton(Yes,No):Compulsory:Yes
+Set_size_only for observation flops:radiobutton(Yes,No):Compulsory:Yes
+No block other than occ should tap cgu_sclk0_en and cgu_sclk1_en directly from the PLL output:radiobutton(Yes,No):Compulsory:Yes
+Adjacent fill option should be used for shift power reduction:radiobutton(Yes,No):Compulsory:Yes
+-shift_power_effort switch needs to be used to reduce power:radiobutton(Yes,No):Compulsory:Yes
+Capture power effort high should be used along with slightly increased power budget. The power budget is got from report_clocks gating  option in TMAX:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are all Spare flops scannable flops. That is, are they Scan flops?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Compare number of obs flops in DCT netlist and final netlist(ICC netlist) with obs flops in rtl and make sure that these are equal:radiobutton(Yes,No):Compulsory:Yes
+Check and validate that all faults on HPPWM outputs (for which obs flops have been added) are covered by atpg:radiobutton(Yes,No):Compulsory:Yes
+Check following after insert_dft and in the final netlist:radiobutton(Yes,No):Compulsory:Yes
+a. Total number of scan chains stitched should be same as given in test protocol:radiobutton(Yes,No):Compulsory:Yes
+b. There should be two scan enables; one going to all flops, other one to clock gates, run a script to check fanout of both scan enables:radiobutton(Yes,No):Compulsory:Yes
+c. Two scan clocks with proper stagger value:radiobutton(Yes,No):Compulsory:Yes
+d. No of flops inside core should be same as in the test model:radiobutton(Yes,No):Compulsory:Yes
+Dump core fault list from Tetramax for each release of core. It should have faults on axiclk domain only:radiobutton(Yes,No):Compulsory:Yes
+Use latest release of pad models for running Tetramax and pattern simulation. If some hacks are needed for Tetramax, do it on latest release only:RADIOBUTTON(Yes,No):Compulsory:Yes
+Final pattern simulation runs (in VCS) are with Real Core model?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are Logs/Reports from DFT Compiler Rule Checking pre-scan-insertion and post-scan-insertion/ TMAX DRC Rule Checking reviewed and signed-off?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are we compliant with the RM Flow. Which version?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Any hacks done to the memory models or any other ATPG models for any of blocks? If yes, give details (pointing to a file that has hack details is fine):RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Has HSIM been run in scan mode. If yes, give details on test used, run results, backannotation used etc:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have we checked all internally developed models for correct behaviour in scan mode?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Have all the .libs (especially internal IPs) checked for correct timing arcs in scan mode?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+}

@@ -1,0 +1,140 @@
+CONFIG checklist1 {
+DESCRIPTION:Block level Functional Verification Checklist
+Has every word of the final specification document been captured in the testplan ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has there been a formal signoff testplan review meeting  ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are all test plans and action items from test plan review complete ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has all the inputs been randomised ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Randomisation exceptions if any and reasons for the same:TEXTAREA:Compulsory:USER_REPLY
+Has all the register programming been randomised ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Has the Synchronisers present in rtl been randomised ?:RADIOBUTTON(Yes,NA):Compulsory:USER_REPLY
+Has the coverage for the synchroniser randomisation ?:RADIOBUTTON(Yes,NA):Compulsory:USER_REPLY
+Does the testbench check all outputs from the DUT ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Exceptions if any and reasons for the same :RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+CODA - Has the RAL been generated from latest CODA and used for testing ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Specific Tests:COMMENT:Compulsory:USER_REPLY
+Has all corner condition assertions or tests written for FIFO's ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Confirm that the maximum Bandwidth has been checked ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Mention the maximum Bandwith value seen:TEXTAREA:Compulsory:USER_REPLY
+RAL Based Tests:COMMENT:Compulsory:USER_REPLY
+Has the RAL based tests run on final rtl:COMMENT::
+ral_onehot_test	(write on bit, read and check all registers) _\@_ :RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+ral_apb_tests (checks reserved and ro registers)	     _\@_ :RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+apb_psel_low_test (read and write with psel low)	     _\@_ :RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+multicycle_paddr_test (checks multicycle on address bus)     _\@_ :RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Has all the Issues filed by DV or for the DV of this block been resolved and closed ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Design Signoff:COMMENT:Compulsory:USER_REPLY
+Has the design team formally signed off the Testplan ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the design team formally signed off the RTG Constraints ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Code Coverage Results:COMMENT:Compulsory:USER_REPLY
+Is the code coverage 100% ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Path for code coverage reports :TEXTBOX:Compulsory:USER_REPLY
+Path for exclusion file if any :TEXTBOX:Optional:USER_REPLY
+Has the exclusion file been approved by design ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Path for constants file used if any :TEXTBOX:Optional:USER_REPLY
+Has the constants file been approved by design ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+What was the options used for code coverage generation:TEXTBOX:Optional:USER_REPLY
+Is the rtl used for the code coverage report generation the final rtl ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+If the rtl used was not final, Is the final rtl formally equivalent to the sign off report rtl ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Mention RTL Config used for Code Coverage:TEXTBOX:Compulsory:USER_REPLY
+Functional Coverage Results:COMMENT:Compulsory:USER_REPLY
+Has the functional cover metric fully coded as per the testplan ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the functional coverage 100% ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Any exclusions made ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Reasons for exclusions ?:TEXTBOX:Compulsory:USER_REPLY
+Path for cover point file :TEXTBOX:Compulsory:USER_REPLY
+Path of the functional coverage reports:TEXTBOX:Compulsory:USER_REPLY 
+Is the rtl used for the functional coverage report generation the final rtl ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+If not has the functional coverage tests been rerun on final rtl (Applicable only for PTB testbench):RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Mention RTL Config used for functional coverage:TEXTBOX:Compulsory:USER_REPLY
+Assertion Coverage Results:COMMENT:Compulsory:USER_REPLY
+Has all the assertions been written as per the testplan ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the assertion coverage 100%:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Any Excluded Assertions ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Reasons for Exclusions:TEXTBOX:Compulsory:USER_REPLY
+Any Assertion  Failures?:RADIOBUTTON(Yes,No):Compulsory:No
+Assertion Files at :TEXTBOX:Compulsory:USER_REPLY 
+Assertion Coverage Reports  :TEXTBOX:Compulsory:USER_REPLY
+Is the rtl used for the assertion coverage report generation the final rtl ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Mention RTL Config used for asertion coverage:TEXTBOX:Compulsory:USER_REPLY
+RFM Coverage Results:COMMENT:Compulsory:USER_REPLY
+Any RFM's used ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+If Yes, what is the RFM coverage ?:TEXTBOX:Compulsory:USER_REPLY
+Has the uncovered RFM lines been looked and found to be ok ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Is the RFM at a standard place ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Path for RFM file :TEXTBOX:Compulsory:USER_REPLY
+Path of the RFM reports:TEXTBOX:Compulsory:USER_REPLY
+Is the rtl used for the report generation the final rtl ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Mention RTL Config used for RFM Coverage :TEXTBOX:Compulsory:USER_REPLY
+Cycle Information from RTG:COMMENT:Compulsory:USER_REPLY
+Has the RTG been run for 10 Billion cycles after the last RTL change ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Cycle count after last RTL change (in Billions):TEXTBOX:Compulsory:USER_REPLY
+Overall Cycle count (in Billions):TEXTBOX:Compulsory:USER_REPLY
+Details of the Cycle coverage at:TEXTBOX:Compulsory:USER_REPLY
+Unconstrained RTG:COMMENT:Compulsory:USER_REPLY
+Is the Code Coverage for unconstrained RTG  greater than 95% ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+If not please explain the reasons for lack of code coverage:TEXTBOX:Compulsory:USER_REPLY
+Is the functional coverage for unconstrained RTG greater than 90% ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+If not please explain the reasons for lack of functional coverage:TEXTBOX:Compulsory:USER_REPLY
+System Level Coverage:COMMENT:Compulsory:USER_REPLY
+Are there dsp tests present for all instances ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is there a specific functional coverage used at system level ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Path of the cover point file:TEXTBOX:Compulsory:USER_REPLY
+Is the System Level functional coverage 100% ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Does the dsp test give 95%  code coverage (with 95% toggle coverage)?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Full chip Regression lists:COMMENT:Compulsory:USER_REPLY
+Does the regression lists have maximum frequency tests at:COMMENT:Compulsory:USER_REPLY
+1_\@_1 Internal Clock:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+1_\@_1 External Clock:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+1_\@_2 Internal Clock:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+1_\@_2 External Clock:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+1_\@_3 Internal Clock:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Does the regression lists have maximum frequency tests  for all the possible combinations of Internal/External clocks Internal/External frame Syncs at:COMMENT:Compulsory:USER_REPLY
+1_\@_1 Internal Clock FS Combinations:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+1_\@_2 Internal Clock FS Combinations:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+1_\@_3 Internal Clock FS Combinations:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Mention max frequency against each item as put in the full chip regression list:COMMENT:Compulsory:USER_REPLY
+1_\@_1 Internal Clock, peripheral clock freq:TEXTBOX:Compulsory:USER_REPLY
+1_\@_1 External Clock, peripheral clock freq:TEXTBOX:Compulsory:USER_REPLY
+1_\@_2 Internal Clock, peripheral clock freq:TEXTBOX:Compulsory:USER_REPLY
+1_\@_2 External Clock, peripheral clock freq:TEXTBOX:Compulsory:USER_REPLY
+1_\@_3 Internal Clock, peripheral clock freq:TEXTBOX:Compulsory:USER_REPLY
+Has all instances of the peripheral covered with the above tests ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+PTE test list:COMMENT:Compulsory:USER_REPLY
+Does the PTE dsp test give 95%  code coverage (with 95% toggle coverage) for all instances?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Are the PTE test  list compliant with the PTE clock ratios, frequency and edge alignment requirements ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Does the PTE list have at speed tests at various ratios?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Mention the criteria for PTE test selection :TEXTBOX:Compulsory:USER_REPLY
+Path to PTE test list :TEXTBOX:Compulsory:USER_REPLY
+GateLevel and PTE Support in TestBench:COMMENT:Compulsory:USER_REPLY
+Does the testbench support driving and sampling based on the AC timings for gatelevel?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Does the testbench drive all external signals at proper edges (for PTE) ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Test Plan documentation:COMMENT:Compulsory:USER_REPLY
+Has all items from testplan review and issue managers updated in the testplan ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Is the final testplan available on the webpage ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+PDF:TEXTBOX:Compulsory:USER_REPLY
+Source:TEXTBOX:Compulsory:USER_REPLY
+Test Bench:COMMENT:Compulsory:USER_REPLY
+Has the test bench,cover points,assertions, rfm and RTG setup copied to standard path ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+Has the RTG been run from standard place ?:RADIOBUTTON(Yes,No):Compulsory:Yes
+RTG/Testbench standard path :TEXTBOX:Compulsory:USER_REPLY
+Has the Block level directed tests copied to standard place ?:RADIOBUTTON(Yes,No,NA):Compulsory:USER_REPLY
+Block Level directed tests path :TEXTBOX:Compulsory:USER_REPLY
+Where there any specific constrained random runs done ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Documentation for redoing the same :TEXTBOX:Compulsory:USER_REPLY
+System RTG Integration:COMMENT:Compulsory:USER_REPLY
+Any features removed ?:TEXTBOX:Compulsory:USER_REPLY
+Any specific changes added ?:TEXTBOX:Compulsory:USER_REPLY
+Tools & Licenses(Put as Not Applicable, if a particular tool was not used):COMMENT:Compulsory:USER_REPLY
+Mention the number of available licenses as well:COMMENT:Compulsory:USER_REPLY
+VCS:TEXTBOX:Compulsory:USER_REPLY
+Ncsim:TEXTBOX:Compulsory:USER_REPLY
+Denali:TEXTBOX:Compulsory:USER_REPLY
+Virage:TEXTBOX:Compulsory:USER_REPLY
+Simvision:TEXTBOX:Compulsory:USER_REPLY
+DVE:TEXTBOX:Compulsory:USER_REPLY
+Linux(OS):TEXTBOX:Compulsory:USER_REPLY
+Magellan:TEXTBOX:Compulsory:USER_REPLY
+Any VIP used ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+Any special license used ?:RADIOBUTTON(Yes,No):Compulsory:USER_REPLY
+test addition post signoff:TEXTAREA:Compulsory:NO_CONFIRM
+}

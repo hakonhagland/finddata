@@ -75,7 +75,6 @@ my ($regex) = map {qr /\b(?:$_)\b/ } join '|', map {quotemeta} keys %$name_map;
 my $top_dir = $output_dir;
 
 rename_dirs( $top_dir, $name_map, $regex );
-print Dumper( $name_map );
 sub rename_dirs {
     my ( $top_dir, $name_map, $regex ) = @_;
     opendir (my $dh, $top_dir) or die "Can't open $top_dir: $!";
@@ -89,7 +88,7 @@ sub rename_dirs {
             $name = $new_name;            
         }       
         elsif ( -f $name ) {
-            when_config_file_rename_and_modify_it( $name, $name_map, $regex );
+            if_config_file_rename_and_modify_it( $name, $name_map, $regex );
         }
         else
         {
@@ -106,11 +105,11 @@ sub rename_dirs {
 }
 
 
-sub when_config_file_rename_and_modify_it {
+sub if_config_file_rename_and_modify_it {
     my ( $name, $name_map, $regex ) = @_;
     if (( my $base_name = $name) =~ s/\.config$// ) {
-        print $base_name, "\n";
         if ( $name_map->{$base_name} ) {
+        print "entersss";
             my $new_name = $name_map->{$base_name} . '.config';
             rename_file_or_dir( $name, $new_name );
             change_file( $new_name, $name_map, $regex );

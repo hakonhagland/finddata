@@ -1,0 +1,45 @@
+External IP and Process Collateral:COMMENT
+TSMC Std-Vt Std cell library (tcbn65lp):Checkbox:Compulsory:USER_REPLY:200a,200b:200a 200b :To Be Done:Yes
+TSMC High-Vt Std cell library (tcbn65lphvt):TEXTAREA:Compulsory:200a and 200b::To Be Done:To Be Done:
+TSMC e –fuse library (tef65lp):TEXTAREA:Compulsory:140a::To Be Done:To Be Done:
+TSMC e –fuse ESD library (tef65lpesd):TEXTAREA:Compulsory:140c::To Be Done:To Be Done:
+TSMC DDR2 IO library (tpdn65lpgv2_memio_ddr2):TEXTAREA:Compulsory:140g::To Be Done:To Be Done:
+Virage High-Vt ASAP-Logic High-Speed Tapless Std Cell Library(ts65npkhssta03):TEXTAREA:Compulsory:A03::To Be Done:To Be Done:
+Virage Std-Vt ASAP-Logic High-Speed Tapless Std Cell Library(ts65npksssta03):TEXTAREA:Compulsory:A03::To Be Done:To Be Done:
+TSMC Contact programmable ROM compiler (tsn65lpsrom):TEXTAREA:Compulsory:140b::To Be Done:To Be Done:
+Virage ASAP Single Port High Speed Leakage Control Register File 32K Sync  (ts65npkb1p11assrl32ksa02 ):TEXTAREA:Compulsory:A02::To Be Done:To Be Done:
+Virage SiWare Single Port High Density Leakage Control SRAM 512K Sync  (ts65npkb1p11sadsl512sa07p1):TEXTAREA:Compulsory:A07P1::To Be Done:To Be Done:
+Virage SiWare Two Port High Density Leakage Control Register File 32K Sync  (ts65npkb2p11asdrl32ksa02p2):TEXTAREA:Compulsory:A02p2::To Be Done:To Be Done:
+TSMC Spice model _\@_  DOC. NO._\@_  T-N65-CL-SP-009-P1 version:TEXTBOX:Compulsory:1.3p3::1.3p3:To Be Done:
+TSMC SRAM spice model DOC No. T-N65-CL-CL-001  version:TEXTBOX:Compulsory:1.2::To Be Done:To Be Done:
+TSMC StarXt model  from CADLIB  version:TEXTAREA:Compulsory:2.0::To Be Done:To Be Done:
+TSMC StarXt model  from CADLIB  version, released date:TEXTAREA:Compulsory:110127::To Be Done:To Be Done:
+TSMC Fire and Ice model (Voltagestorm)DOC No. T-N65-CL-SP-036-V2   version:TEXTBOX:Compulsory:1.1::To Be Done:To Be Done:
+TSMC Hercules runsets from CADLIB version:TEXTAREA:Compulsory:2.0::To Be Done:To Be Done:
+TSMC Hercules runsets from CADLIB version release date:TEXTAREA:Compulsory:110127::To Be Done:To Be Done:
+CAD Tools/Versions:COMMENT
+cscope:TEXTBOX:Compulsory:cscope/2008.09-SP2::To Be Done:To Be Done:
+de_env:TEXTBOX:Compulsory:de_env/1.0::To Be Done:To Be Done:
+formality:TEXTBOX:Compulsory:formality/2010.12-SP2::To Be Done:To Be Done:
+hercules:TEXTBOX:Compulsory:hercules/2008.09-SP1-3::To Be Done:To Be Done:
+hsim:TEXTBOX:Compulsory:hsim/2010.03-SP2::To Be Done:To Be Done:
+hspice:TEXTBOX:Compulsory:hspice/2010.03::To Be Done:To Be Done:
+iccompiler:Checkbox:Compulsory:USER_REPLY:iccompiler/2010.03-SP5,iccompiler/2010.03-SP5-2:iccompiler/2010.03-SP5 :To Be Done:Yes
+incisive:Checkbox:Compulsory:USER_REPLY:incisive/9.20-s23,incisive/9.20-s33:incisive/9.20-s23 :To Be Done:Yes
+jtv:TEXTBOX:Compulsory:jtv/4.3.7::To Be Done:To Be Done:
+magellan:TEXTBOX:Compulsory:magellan/2010.03-5::To Be Done:To Be Done:
+mmav:Checkbox:Compulsory:USER_REPLY:mmav/3.2.61,mmav/3.3.008c_20110406:mmav/3.3.008c_20110406 :To Be Done:Cant_say
+nanosim:TEXTBOX:Compulsory:nanosim/2010.12::To Be Done:To Be Done:
+primetime:Checkbox:Compulsory:USER_REPLY:primetime/2009.12-SP2,primetime/2010.12-SP2:primetime/2010.12-SP2 :To Be Done:Cant_say
+rs_bf:TEXTBOX:Compulsory:rs_bf/1.0::To Be Done:To Be Done:
+starxt:TEXTBOX:Compulsory:starxt/2010.12-1::To Be Done:To Be Done:
+syn:TEXTBOX:Compulsory:syn/2010.03-SP5::To Be Done:To Be Done:
+tetramax:Checkbox:Compulsory:USER_REPLY:tetramax/2010.03-SP5,tetramax/2010.12-SP2,tetramax/2010.12-SP2-CS1:tetramax/2010.12-SP2-CS1 :To Be Done:Waive_off
+vcs:Checkbox:Compulsory:USER_REPLY:vcs/2006.06-SP2,vcs/2009.06,vcs/2009.12-3,vcs/2010.06:vcs/2010.06 :To Be Done:Waive_off
+vstorm:TEXTBOX:Compulsory:vstorm/7.1.2::To Be Done:To Be Done:
+DC Log File:FILE_FIELD_EXTRACT:Compulsory:USER_REPLY::/prj1/blk1/checklist3/rev5/.bbhat/38NO_FILE_ATTACHED:To Be Done:Cant_say
+Warnings:Auto_extract:Compulsory:USER_REPLY:DC Log File:To Be Done:To Be Done:Cant_say
+DbLoaded:Auto_extract:Compulsory:USER_REPLY:DC Log File:To Be Done:To Be Done:Cant_say
+Test Pull down menu:PullDownMenu:Compulsory:USER_REPLY:1,2,3:To Be Done:To Be Done:INCORRECT
+Test scrolling list:Scrolling_list:Compulsory:USER_REPLY:1,2,3,4,5,6,7,8,9,0:To Be Done:To Be Done:INCORRECT
+:::::To Be Done:To Be Done:INCORRECT

@@ -1,0 +1,66 @@
+Is Synopsys RM flow used?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:issue-49-01-0163_\&_bugzilla-380_\&_  _\&_http_\@_//www.google.co.in:Yes
+Floor planning_\@_:COMMENT
+Did You check that Power N/W exists in the regions in which placement blockage is not present ?_\&_:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any Blockages Used?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Hard block blockages created on top of hard macros / ilms with at least 5u extension?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Routing blockages created on top of macros/ilms are reviewed ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Corners Protected with Hard Placement Blockages ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Corners Protected with Route Guides ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any physical bounds created for meeting timing ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is Power Network is reviewed including Macro preroutes using verfy_pg command?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Pin Buffers are added for macro IO's are Added ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Macro placement is reviewed and fixed ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Kelvin routes Present in the Floor planning Stage ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+3V nets prerouted ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is RDL used for PWR Network ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is IR drop analysis done in Vstrom on the Floor plan database ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Did you checked with IP vendor for any decoupling cap requirement on kelvin routes and added Corresponding Placement Blockages ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+ADI 17 rule ran on padring ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Floor plan is DRC and VDD/VSS shorts clean ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Did you check for any unintentional routes exists on top of macros after PWR N/W pre-routes ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Explicit Placement blockages are created in the pad regions ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Explicit Routing blockages are created in the pad regions ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is Complete bond pad metal is used for top level power hookup ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Placement_\@_:COMMENT
+Is Relative Placement is used for Synchronizers ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any scenarios ( modes & corners) used for 1'st level placement ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any group paths used for Placement?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Delay balancing constraints used for placement ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is 1st level Placement is 2 step ? ( create placement then place_opt):RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is Scan reordering is used ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+max_transition & max_cap limits used for initial placement ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+max_cap and max_trans in the custom .libs are checked and validated ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any New Modes and scenarios for incremental placement?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any Modules in which svt is allowed ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Are power optimizations/Area Recovery are done after placement ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any Checks Done For Load less Drivers/Driver less loads/Dangling nets ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is Visual inspection done after placement to check for any unintentional placements ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+CTS_\@_:COMMENT
+Is CTS corner covers worst case for SVT cells in terms of insertion delay ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is CTS Multi Pass ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+CTS median insertion delay numbers matched for axiclk/ddrclk/sclka/sclkb ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Global skew numbers for each clock:TEXTAREA:Compulsory:USER_REPLY::49-01-0163:To Be Done:Cant_say
+Confirm High Frequency Clocks used 2w3s and at least 2 vias ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is lib cells spacing set for less porosity cells like CKND1/ND2 for avoiding congestion beacuse of CTS ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+list of CTS cells used:TEXTAREA:Compulsory:USER_REPLY::To Be Done:To Be Done:Cant_say
+All the clocks are propagated after CTS ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is CTS target transition set ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is CTS target Cap Set ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is Clock derating used for setup ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Confirm 3v nets are frozen ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Confirm 3v nets are not ideal and desifned as set_dont_touch for transition checks ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Confirm Spare cells are inserted prior to post CTS optimizations ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Is Clock derating Used for hold ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+XTAL to PLL clckin is different segment of CTS ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any HVT cells in clock tree ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any cell exists in clock tree other than ICG/_drv/CTS inserted buffer?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Confirm No Ideal Nets other than Clock Nets/3v nets at placement level ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Post CTS optimizations_\@_:COMMENT
+Any Checks Done for Gross hold violations before hold fixes ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any New scenarios used for post CTS optimizations ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Any Source Clock Latencies used ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Confirm No Ideal nets other than 3v nets?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Delay Balancing Numbers from ICC_\@_:TEXTAREA:Compulsory:USER_REPLY::To Be Done:To Be Done:Cant_say
+All warnings/Errors reviewed ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Spare Cells list covers Scanable Flop with async clear ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
+Checks Done to verify synchronisers are SVT and placed close by ?:RadioButton:Compulsory:USER_REPLY:Yes,No:Yes:To Be Done:Cant_say
