@@ -41,7 +41,7 @@ sub help {
 
 GetOptions(
     'help|h|?' => \&help,
-    'prjroot=s' => \my $input_dir,
+    'prjroot=s' => \my $base_dir,
     'outdir=s' => \my $output_dir,
     'mapfile=s' => \my $mapfile,
 )
@@ -49,6 +49,26 @@ GetOptions(
 
 ##CREATING THE DIRECTORIES FROM COMMAND LINE ARGUMENTS##
 mkdir $output_dir ;
+
+my $input_dir = get_input_dir( $base_dir );
+
+sub get_input_dir {
+    my ( $base_dir ) = @_;
+
+    my $fn = File::Spec->catfile( $base_dir, 'project.config' );
+    my $input_dir;
+    open ( my $fh, '<', $fn ) or die "Could not open file '$fn': $!";
+    while ( <$fh> ) {
+        chomp;
+        if (/^REVISION_LOCATION:\s*(\S+)/) {
+            $input_dir = $1;
+            last;
+        }
+    }
+    close $fh;
+    die "Could not find revision location!" if !defined $input_dir;
+    return $input_dir;
+}
 
 ##COPYING THE CONFIG FILES FROM SOURCE TO DESTINATION### 
 my %created;
