@@ -70,22 +70,45 @@ sub get_input_dir {
     return $input_dir;
 }
 
-##COPYING THE CONFIG FILES FROM SOURCE TO DESTINATION### 
-my %created;
-for my $in (
-   File::Find::Rule
-   ->maxdepth(5)
-   ->file()
-   ->prune()
-   ->name(qr/^[^.].*\.config$/)
-   ->in($input_dir)
-) {
-    my $match_file = substr($in, length($input_dir) + 1); 
-    my ($match_dir) = $match_file =~ m{^(.*)/} ? $1 : '.';
-    my $out_dir = $output_dir . '/' . $match_dir;
-    my $out     = $output_dir . '/' . $match_file;
-    make_path($out_dir) if !$created{$out_dir}++;
-    copy($in, $out);
+my @input_dirs = ( $input_dir );
+if ( $input_dir =~ /^\.\./ ) {
+    @input_dirs = find_input_dirs( $input_dir );
+}
+
+sub find_input_dirs {
+    my ( $dir ) = @_;
+    $dir =~ s/^\.\.//;
+    
+    my @dirs = File::Find::Rule->new->directory
+      ->exec( sub { ($_[1] =~ /\Q$dir\E/) ? 1 : 0 } )->in('/');
+    return @dirs;
+}
+
+for my $input_dir ( @input_dirs ) {
+    copy_config_files( $input_dir, $output_dir );
+}
+
+sub copy_config_files {
+    my ( $input_dir, $output_dir ) = @_;
+    
+    ##COPYING THE CONFIG FILES FROM SOURCE TO DESTINATION### 
+
+    my %created;
+    for my $in (
+        File::Find::Rule
+        ->maxdepth(5)
+        ->file()
+        ->prune()
+        ->name(qr/^[^.].*\.config$/)
+        ->in($input_dir)
+    ) {
+        my $match_file = substr($in, length($input_dir) + 1); 
+        my ($match_dir) = $match_file =~ m{^(.*)/} ? $1 : '.';
+        my $out_dir = $output_dir . '/' . $match_dir;
+        my $out     = $output_dir . '/' . $match_file;
+        make_path($out_dir) if !$created{$out_dir}++;
+        copy($in, $out);
+    }
 }
 
 ##TO RENAME DIRECTORIES AND RENAME THE CONTENTS OF THE .CONFIG FILES AS PER MATCHING WITH MAPFILE.TXT CONTENTS##
