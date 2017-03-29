@@ -36,7 +36,29 @@ sub help {
    print(STDERR "$prog --help\n");
    exit(0);
 }
-
+###RENAMING THE FILES
+sub runDir($$);
+sub runDir($$) {
+    my $prefix = shift @_;
+    my $dir = shift @_;
+    #print $dir;
+    opendir(DIR, $dir) or die $!;
+    my @entries = readdir(DIR);    
+    #print @entries,"\n";
+    close(DIR);
+    foreach my $file (@entries) {
+       next if ($file =~ /^\.+$/);
+        if ( -d $dir . '/' . $file) {
+            runDir( $file .'_', $dir . '/' . $file);
+        } elsif ( ( -f $dir . '/' . $file ) && ( $file =~ /\.config$/ ) && ($file !~ /^$prefix/)) {
+            my $suffix = $file;
+            $suffix=~s{\A[^.]*}{}xms;
+            rename $dir . '/' . $file, $dir . '/' .$prefix . $suffix ;
+        }
+        
+    }
+}
+runDir('',$output_dir);
 ##GETTING INPUT/OUTPUT FILE FROM COMMAND LINE ARGUMENTS##
 
 GetOptions(
