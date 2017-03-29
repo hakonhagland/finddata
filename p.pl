@@ -203,4 +203,27 @@ sub read_map {
     close $fh;
     return \%name_map;
 }
+sub file_filter
+{
+my $location=shift;
 
+open LOGFILE, $location;
+
+my $max_id;
+
+while (<LOGFILE>) {
+    if (/rev(\d+)/) {
+        
+            $max_id = $1;
+            
+            
+        } else {
+            $max_id = $1 if ($1 > $max_id);
+            
+        }
+    }
+    close LOGFILE;
+}
+
+
+file_filter($output_dir);
