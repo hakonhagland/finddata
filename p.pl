@@ -132,7 +132,30 @@ sub copy_config_files {
         copy($in, $out);
     }
 }
+sub DelTaskFiles{
+    my ($workdir) = shift;
+    my $mask = $workdir . '/*';
+    my @files1 = grep {-f}glob $mask;
+    foreach my $f (@files1)
+    {
+        if(-d $f)
+        {
+        DelTaskFiles($f);
+        }
+        else
+        {
+        my $filename1 = basename($f);    
 
+            if ($filename1 =~ /^task*/)
+            {
+              unlink $filename1;
+                print $filename1;
+                
+            }      
+       }
+   }
+}
+DelTaskFiles($output_dir);
 ##TO RENAME DIRECTORIES AND RENAME THE CONTENTS OF THE .CONFIG FILES AS PER MATCHING WITH MAPFILE.TXT CONTENTS##
 my $name_map = read_map( $mapfile );
 my ($regex) = map {qr /\b(?:$_)\b/ } join '|', map {quotemeta} keys %$name_map;
